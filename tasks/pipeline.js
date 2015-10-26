@@ -14,7 +14,6 @@
  // just change assets/ for .tmp/public/ and then the same path as always
  var browserifyMainFile = '.tmp/public/js/app.js';
 
-
 // CSS files to inject in order
 //
 // (if you're using LESS with the built-in default config, you'll want
@@ -22,7 +21,6 @@
 var cssFilesToInject = [
   'styles/**/*.css'
 ];
-
 
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
@@ -41,7 +39,6 @@ var jsFilesToInject = [
   // 'js/**/*.js' // These are handled by browerify
 ];
 
-
 // Client-side HTML templates are injected using the sources below
 // The ordering of these templates shouldn't matter.
 // (uses Grunt-style wildcard/glob/splat expressions)
@@ -55,11 +52,10 @@ var templateFilesToInject = [
   'templates/**/*.html'
 ];
 
-
-
 // Prefix relative paths to source files so they point to the proper locations
 // (i.e. where the other Grunt tasks spit them out, or in some cases, where
 // they reside in the first place)
+module.exports.browserifyMainFile = browserifyMainFile;
 module.exports.cssFilesToInject = cssFilesToInject.map(function(path) {
   return '.tmp/public/' + path;
 });
@@ -69,4 +65,3 @@ module.exports.jsFilesToInject = jsFilesToInject.map(function(path) {
 module.exports.templateFilesToInject = templateFilesToInject.map(function(path) {
   return 'assets/' + path;
 });
-module.exports.browserifyMainFile = browserifyMainFile;

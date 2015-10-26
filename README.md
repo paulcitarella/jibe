@@ -15,4 +15,5 @@ A [Sails](http://sailsjs.org) starter application with the following pre-configu
 * Asset versioning
 * Unit, integration, functional tests
 * Migrations with tracking and autorun
+* Live reloading in dev
 * Deploy to Heroku
