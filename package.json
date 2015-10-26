@@ -5,7 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
-    "ejs": "~0.8.4",
+    "bootstrap": "~3.3.5",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.10.1",
@@ -13,7 +13,7 @@
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-cssmin": "~0.9.0",
     "grunt-contrib-jst": "~0.6.0",
-    "grunt-contrib-less": "0.11.1",
+    "grunt-contrib-less": "~0.11.1",
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-sails-linker": "~0.9.5",
@@ -30,7 +30,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/paulcitarella/jibe.git"
+    "url": "git://github.com/PatentProperties/jibe.git"
   },
   "author": "paulcitarella",
   "license": ""
