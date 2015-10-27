@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "angular": "~1.4.7",
     "bootstrap": "~3.3.5",
     "grunt": "0.4.2",
     "grunt-browserify": "~4.0.1",

@@ -1,13 +1,17 @@
-<div class="row task-row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="row task-row" ng-app="tasks">
+  <div class="col-md-6 col-md-offset-3" ng-controller="TaskListCtrl" ng-cloak>
     <h1>Tasks</h1>
-    <form>
+    <form ng-submit="addTask()">
       <div class="input-group">
-        <input type="text" name="task" class="form-control" autofocus>
+        <input type="text" name="newTask" ng-model="newTask" class="form-control" autofocus>
         <span class="input-group-btn">
           <button type="submit" class="btn btn-primary">Add</button>
         </span>
       </div>
     </form>
+
+    <div id="task-list">
+      <div class="task-list-item" ng-repeat="task in tasks"><span ng-bind="task.title"></span></div>
+    </div>
   </div>
 </div>
