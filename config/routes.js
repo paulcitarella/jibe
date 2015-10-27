@@ -37,6 +37,12 @@ module.exports.routes = {
     locals: {
       layout: 'cover'
     }
+  },
+  '/tasks': {
+    view: 'tasks',
+    locals: {
+      layout: 'app'
+    }
   }
 
   /***************************************************************************
