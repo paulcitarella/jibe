@@ -11,7 +11,15 @@
     </form>
 
     <div id="task-list">
-      <div class="task-list-item" ng-repeat="task in tasks"><span ng-bind="task.title"></span></div>
+      <div class="task-list-item" ng-repeat="task in tasks">
+        <span ng-bind="task.title"></span>
+        <div class="menu">
+          <span class="fa fa-gear" data-toggle="dropdown"></span>
+          <ul class="dropdown-menu">
+            <li><a href="javascript:void(0)" ng-click="deleteTask(task)">Delete</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>

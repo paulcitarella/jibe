@@ -8,11 +8,11 @@
  * for matching multiple files.)
  */
 
- // BROWSERIFY main file path
- // Browserify task work before copying the files in the .tmp folder
- // so the path sould be something like .tmp/public/js/app.js
- // just change assets/ for .tmp/public/ and then the same path as always
- var browserifyMainFile = '.tmp/public/js/main.js';
+// BROWSERIFY main file path
+// Browserify task work before copying the files in the .tmp folder
+// so the path sould be something like .tmp/public/js/app.js
+// just change assets/ for .tmp/public/ and then the same path as always
+var browserifyMainFile = '.tmp/public/js/main.js';
 
 // CSS files to inject in order
 //
@@ -30,7 +30,6 @@ var jsFilesToInject = [
   'js/dependencies/sails.io.js',
 
   // Dependencies like jQuery, or Angular are brought in here
-  // '../../node_modules/bootstrap/dist/js/bootstrap.min.js',
   'browserify/**/*.js',
   'js/dependencies/**/*.js',
 

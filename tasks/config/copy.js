@@ -22,6 +22,16 @@ module.exports = function(grunt) {
 				cwd: './assets',
 				src: ['**/*.!(coffee|less)'],
 				dest: '.tmp/public'
+			},{
+				expand: true,
+				cwd: './node_modules/font-awesome/css',
+				src: ['*.min.css'],
+				dest: '.tmp/public/styles'
+			},{
+				expand: true,
+				cwd: './node_modules/font-awesome',
+				src: ['fonts/*'],
+				dest: '.tmp/public'
 			}]
 		},
 		build: {

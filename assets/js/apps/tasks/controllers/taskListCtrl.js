@@ -7,4 +7,8 @@ module.exports = function taskListCtrl($scope) {
       $scope.newTask = null;
     }
   };
+
+  $scope.deleteTask  = function deleteTask(task) {
+    $scope.tasks.splice($scope.tasks.indexOf(task), 1);
+  };
 };
