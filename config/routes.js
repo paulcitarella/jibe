@@ -41,7 +41,10 @@ module.exports.routes = {
   '/tasks': {
     view: 'tasks',
     locals: {
-      layout: 'app'
+      layout: 'app',
+      pageId: 'tasks',
+      ngApp: 'tasks',
+      tasksActive: true
     }
   }
 

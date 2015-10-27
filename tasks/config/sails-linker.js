@@ -141,9 +141,9 @@ module.exports = function(grunt) {
 				appRoot: '.tmp/public'
 			},
 			files: {
-				'.tmp/public/index.html': ['.tmp/public/jst.js'],
-				'views/**/*.html': ['.tmp/public/jst.js'],
-				'views/**/**.handlebars': ['.tmp/public/jst.js']
+				'.tmp/public/index.html': ['.tmp/public/js/jst.js'],
+				'views/**/*.html': ['.tmp/public/js/jst.js'],
+				'views/**/**.handlebars': ['.tmp/public/js/jst.js']
 			}
 		},
 
@@ -258,7 +258,7 @@ module.exports = function(grunt) {
 				appRoot: '.tmp/public'
 			},
 			files: {
-				'views/**/*.jade': ['.tmp/public/jst.js']
+				'views/**/*.jade': ['.tmp/public/js/jst.js']
 			}
 		}
 	});

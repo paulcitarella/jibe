@@ -1,45 +1,47 @@
-.task-row {
-  padding: 40px 15px;
-  text-align: center;
-  input.form-control {
-    border-style: none none solid none;
-    border-radius: 0;
-    outline: none;
-    box-shadow: none;
-    font-size: 1.5em;
-  }
-  .btn {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  #task-list {
-    margin-top: 30px;
-    font-size: 1.75em;
-    font-weight: 300;
-    .task-list-item {
-      padding: 10px 35px 10px 10px;
-      position: relative;
-      .menu {
-        position: absolute;
-        right: 10px;
-        top: 8px;
-        font-weight: 400;
-        .fa-gear {
-          font-size: @font-size-base;
-          color: @gray-lighter;
-          &:hover {
-            cursor: pointer;
+body#tasks {
+  .task-row {
+    padding: 40px 15px;
+    text-align: center;
+    input.form-control {
+      border-style: none none solid none;
+      border-radius: 0;
+      outline: none;
+      box-shadow: none;
+      font-size: 1.5em;
+    }
+    .btn {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    #task-list {
+      margin-top: 30px;
+      font-size: 1.75em;
+      font-weight: 300;
+      .task-list-item {
+        padding: 10px 35px 10px 10px;
+        position: relative;
+        .menu {
+          position: absolute;
+          right: 10px;
+          top: 8px;
+          font-weight: 400;
+          .fa-gear {
+            font-size: @font-size-base;
+            color: @gray-lighter;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          .dropdown-menu {
+            position: absolute;
+            left: inherit;
+            right: -10px;
           }
         }
-        .dropdown-menu {
-          position: absolute;
-          left: inherit;
-          right: -10px;
-        }
-      }
-      &:hover {
-        .fa-gear {
-          color: lighten(@gray-light, 10%);
+        &:hover {
+          .fa-gear {
+            color: lighten(@gray-light, 10%);
+          }
         }
       }
     }

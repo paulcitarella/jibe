@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
 
+    <!--TEMPLATES-->
+    <script type="text/javascript" src="/js/jst.js"></script>
+    <!--TEMPLATES END-->
+
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/browserify/debug.0.0.0.js"></script>
@@ -29,7 +33,7 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body id="{{pageId}}" ng-app="{{ngApp}}">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -45,7 +49,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
-            <li class="active"><a href="/tasks">Tasks</a></li>
+            <li class="{{#if tasksActive}}active{{/if}}"><a href="/tasks">Tasks</a></li>
           </ul>
         </div>
       </div>
@@ -54,10 +58,6 @@
     <div class="container">
       {{{body}}}
     </div>
-
-    <!--TEMPLATES-->
-    
-    <!--TEMPLATES END-->
 
   </body>
 </html>
