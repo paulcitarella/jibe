@@ -17,7 +17,7 @@ module.exports = function(grunt) {
   grunt.config.set('browserify', {
     dev: {
       src : require('../pipeline').browserifyMainFile,
-      dest: '.tmp/public/browserify/debug.' + version + '.js'
+      dest: '.tmp/public/browserify/dev.' + version + '.js'
     }
   });
 
