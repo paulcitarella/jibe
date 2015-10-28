@@ -11,38 +11,38 @@
  * Copies all directories nd files from the .tmp/public directory into a www directory.
  *
  * For usage docs see:
- * 		https://github.com/gruntjs/grunt-contrib-copy
+ *    https://github.com/gruntjs/grunt-contrib-copy
  */
 module.exports = function(grunt) {
 
-	grunt.config.set('copy', {
-		dev: {
-			files: [{
-				expand: true,
-				cwd: './assets',
-				src: ['**/*.!(coffee|less)'],
-				dest: '.tmp/public'
-			},{
-				expand: true,
-				cwd: './node_modules/font-awesome/css',
-				src: ['*.min.css'],
-				dest: '.tmp/public/styles'
-			},{
-				expand: true,
-				cwd: './node_modules/font-awesome',
-				src: ['fonts/*'],
-				dest: '.tmp/public'
-			}]
-		},
-		build: {
-			files: [{
-				expand: true,
-				cwd: '.tmp/public',
-				src: ['**/*'],
-				dest: 'www'
-			}]
-		}
-	});
+  grunt.config.set('copy', {
+    dev: {
+      files: [{
+        expand: true,
+        cwd: './assets',
+        src: ['**/*.!(less)'],
+        dest: '.tmp/public'
+      },{
+        expand: true,
+        cwd: './node_modules/font-awesome/css',
+        src: ['*.min.css'],
+        dest: '.tmp/public/styles'
+      },{
+        expand: true,
+        cwd: './node_modules/font-awesome',
+        src: ['fonts/*'],
+        dest: '.tmp/public'
+      }]
+    },
+    build: {
+      files: [{
+        expand: true,
+        cwd: '.tmp/public',
+        src: ['**/*'],
+        dest: 'www'
+      }]
+    }
+  });
 
-	grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 };
