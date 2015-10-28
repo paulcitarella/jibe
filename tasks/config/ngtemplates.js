@@ -13,10 +13,22 @@ module.exports = function(grunt) {
       options: {
         bootstrap: function(module, script) {
           return 'module.exports = function($templateCache) {\n' + script + '};';
+        },
+        prefix: '/',
+        htmlmin: {
+          collapseBooleanAttributes:      true,
+          collapseWhitespace:             true,
+          removeAttributeQuotes:          true,
+          removeComments:                 true, // Only if you don't use comment directives!
+          removeEmptyAttributes:          true,
+          removeRedundantAttributes:      true,
+          removeScriptTypeAttributes:     true,
+          removeStyleLinkTypeAttributes:  true
         }
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-angular-templates');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
 };

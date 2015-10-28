@@ -6,7 +6,7 @@ app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
-      templateUrl: 'js/apps/tasks/templates/taskList.html',
+      templateUrl: '/js/apps/tasks/templates/taskList.html',
       controller: 'TaskListCtrl'
     })
     .otherwise({
