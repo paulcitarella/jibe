@@ -1,7 +1,7 @@
-module.exports.jstCache = function jstCache($provide) {
+module.exports.jstCache = function($provide) {
   $provide.decorator('$templateCache', function($delegate) {
       var get = $delegate.get;
-      $delegate.get = function (key) {
+      $delegate.get = function(key) {
           return window.JST[key] || get(key);
       };
       return $delegate;
