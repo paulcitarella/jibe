@@ -11,6 +11,16 @@
 
 module.exports.bootstrap = function(cb) {
 
+  // Register custom Handlebars helpers
+  var helpers = require('include-all')({
+    dirname: __dirname + '/../api/helpers',
+    filter: /(.+)\.js$/
+  }) || {};
+  var handlebars = require('sails/node_modules/handlebars');
+  for (var helperName in helpers) {
+    handlebars.registerHelper(helperName, helpers[helperName]);
+  }
+
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
   cb();
