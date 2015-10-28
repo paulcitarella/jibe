@@ -35,7 +35,8 @@ module.exports.routes = {
   '/': {
     view: 'homepage',
     locals: {
-      layout: 'cover'
+      layout: 'cover',
+      pageId: 'home',
     }
   },
   '/tasks': {
