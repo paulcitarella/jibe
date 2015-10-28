@@ -16,7 +16,7 @@ module.exports.bootstrap = function(cb) {
     dirname: __dirname + '/../api/helpers',
     filter: /(.+)\.js$/
   }) || {};
-  var handlebars = require('sails/node_modules/handlebars');
+  var handlebars = require('sails/node_modules/express-handlebars/node_modules/handlebars');
   for (var helperName in helpers) {
     handlebars.registerHelper(helperName, helpers[helperName]);
   }
