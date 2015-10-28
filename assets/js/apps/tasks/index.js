@@ -1,11 +1,12 @@
 var angular = require('angular');
 var app = angular.module('tasks', [require('angular-route')]);
 
+// Routes
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
-      templateUrl: 'assets/templates/tasks/taskList.html',
+      templateUrl: 'js/apps/tasks/templates/taskList.html',
       controller: 'TaskListCtrl'
     })
     .otherwise({
@@ -14,6 +15,8 @@ app.config(['$routeProvider', '$locationProvider',
   }
 ]);
 
-app.config(['$provide', require('../util').jstCache]);
+// Preload angular templates into the cache
+app.run(['$templateCache', require('./templates')]);
 
+// Controllers
 app.controller('TaskListCtrl', ['$scope', require('./controllers/taskListCtrl')]);
