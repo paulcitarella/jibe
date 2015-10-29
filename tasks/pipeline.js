@@ -12,7 +12,7 @@
 // Browserify task work before copying the files in the .tmp folder
 // so the path sould be something like .tmp/public/js/app.js
 // just change assets/ for .tmp/public/ and then the same path as always
-var browserifyMainFile = '.tmp/public/js/main.js';
+var browserifyMainFile = 'js/main.js';
 
 // CSS files to inject in order
 //
@@ -28,20 +28,13 @@ var jsFilesToInject = [
 
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
-
-  // Dependencies like jQuery, or Angular are brought in here
-  'browserify/**/*.js',
-  'js/dependencies/**/*.js',
-
-  // All of the rest of your client-side js files
-  // will be injected here in no particular order.
-  // 'js/**/*.js' // These are handled by browerify
+  'browserify/**/*.js'
 ];
 
 // Prefix relative paths to source files so they point to the proper locations
 // (i.e. where the other Grunt tasks spit them out, or in some cases, where
 // they reside in the first place)
-module.exports.browserifyMainFile = browserifyMainFile;
+module.exports.browserifyMainFile = '.tmp/public/' + browserifyMainFile;
 module.exports.cssFilesToInject = cssFilesToInject.map(function(path) {
   return '.tmp/public/' + path;
 });
