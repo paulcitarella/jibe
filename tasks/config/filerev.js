@@ -16,18 +16,11 @@ module.exports = function(grunt) {
     },
     css: {
       src: '.tmp/public/**/*.css'
-    }
-  });
-
-  grunt.config.set('filerev_assets', {
-    dev: {
-      options: {
-        dest: '.tmp/public/js/assets.json',
-        cwd: '.tmp/public/'
-      }
+    },
+    icons: {
+      src: '.tmp/public/**/*.ico'
     }
   });
 
   grunt.loadNpmTasks('grunt-filerev');
-  grunt.loadNpmTasks('grunt-filerev-assets');
 };
