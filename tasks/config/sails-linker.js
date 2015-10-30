@@ -51,9 +51,9 @@ module.exports = function(grunt) {
         appRoot: '.tmp/public'
       },
       files: {
-        '.tmp/public/**/*.html': ['.tmp/public/min/production.min.js'],
-        'views/**/*.html': ['.tmp/public/min/production.min.js'],
-        'views/**/*.handlebars': ['.tmp/public/min/production.min.js']
+        '.tmp/public/**/*.html': ['.tmp/public/min/*.js'],
+        'views/**/*.html': ['.tmp/public/min/*.js'],
+        'views/**/*.handlebars': ['.tmp/public/min/*.js']
       }
     },
 
@@ -66,9 +66,9 @@ module.exports = function(grunt) {
         relative: true
       },
       files: {
-        '.tmp/public/**/*.html': ['.tmp/public/min/production.min.js'],
-        'views/**/*.html': ['.tmp/public/min/production.min.js'],
-        'views/**/*.handlebars': ['.tmp/public/min/production.min.js']
+        '.tmp/public/**/*.html': ['.tmp/public/min/*.js'],
+        'views/**/*.html': ['.tmp/public/min/*.js'],
+        'views/**/*.handlebars': ['.tmp/public/min/*.js']
       }
     },
 
@@ -111,9 +111,9 @@ module.exports = function(grunt) {
         appRoot: '.tmp/public'
       },
       files: {
-        '.tmp/public/index.html': ['.tmp/public/min/production.min.css'],
-        'views/**/*.html': ['.tmp/public/min/production.min.css'],
-        'views/**/*.handlebars': ['.tmp/public/min/production.min.css']
+        '.tmp/public/index.html': ['.tmp/public/min/*.css'],
+        'views/**/*.html': ['.tmp/public/min/*.css'],
+        'views/**/*.handlebars': ['.tmp/public/min/*.css']
       }
     },
 
@@ -126,9 +126,9 @@ module.exports = function(grunt) {
         relative: true
       },
       files: {
-        '.tmp/public/index.html': ['.tmp/public/min/production.min.css'],
-        'views/**/*.html': ['.tmp/public/min/production.min.css'],
-        'views/**/*.handlebars': ['.tmp/public/min/production.min.css']
+        '.tmp/public/index.html': ['.tmp/public/min/*.css'],
+        'views/**/*.html': ['.tmp/public/min/*.css'],
+        'views/**/*.handlebars': ['.tmp/public/min/*.css']
       }
     },
   });

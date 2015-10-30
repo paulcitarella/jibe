@@ -8,6 +8,9 @@ module.exports = function(grunt) {
       algorithm: 'md5',
       length: 8
     },
+    html: {
+      src: '.tmp/public/**/*.html'
+    },
     images: {
       src: '.tmp/public/images/**/*'
     },
@@ -16,6 +19,9 @@ module.exports = function(grunt) {
     },
     css: {
       src: '.tmp/public/**/*.css'
+    },
+    fonts: {
+      src: '.tmp/public/fonts/**/*'
     },
     icons: {
       src: '.tmp/public/**/*.ico'
