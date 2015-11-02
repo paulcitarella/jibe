@@ -15,6 +15,6 @@ A [Sails](http://sailsjs.org) starter application with the following pre-configu
 * Postgres DB
 * To do list model
 * Task ownership and scoped queries
-* Unit, integration, functional tests
-* Migrations with tracking and autorun
+* Angular, unit, integration, functional tests
+* DB migrations with tracking and autorun
 * Deploy to Heroku
