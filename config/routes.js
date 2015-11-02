@@ -33,16 +33,17 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'homepage',
+    controller: 'HomeController',
+    action: 'index',
     locals: {
       layout: 'cover',
       pageId: 'home',
     }
   },
   '/tasks': {
-    view: 'tasks',
+    controller: 'TaskController',
+    action: 'index',
     locals: {
-      layout: 'app',
       pageId: 'tasks',
       ngApp: 'tasks',
       tasksActive: true
