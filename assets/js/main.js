@@ -5,3 +5,4 @@ var Bootstrap = require('bootstrap');
 
 // Apps
 var tasks = require('./apps/tasks');
+var login = require('./apps/login');

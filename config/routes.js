@@ -28,6 +28,7 @@ module.exports.routes = {
     locals: {
       layout: 'cover',
       pageId: 'home',
+      ngApp: 'login',
     }
   },
   '/tasks': {

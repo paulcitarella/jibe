@@ -3,6 +3,23 @@
  * the template cache.
  */
 
+var opts = {
+  bootstrap: function(module, script) {
+    return 'module.exports = function($templateCache) {\n' + script + '};';
+  },
+  prefix: '/',
+  htmlmin: {
+    collapseBooleanAttributes:      true,
+    collapseWhitespace:             true,
+    removeAttributeQuotes:          true,
+    removeComments:                 true, // Only if you don't use comment directives!
+    removeEmptyAttributes:          true,
+    removeRedundantAttributes:      true,
+    removeScriptTypeAttributes:     true,
+    removeStyleLinkTypeAttributes:  true
+  }
+};
+
 module.exports = function(grunt) {
 
   grunt.config.set('ngtemplates', {
@@ -10,22 +27,13 @@ module.exports = function(grunt) {
       cwd: 'assets',
       src: 'js/apps/tasks/templates/**/*.html',
       dest: '.tmp/public/js/apps/tasks/templates.js',
-      options: {
-        bootstrap: function(module, script) {
-          return 'module.exports = function($templateCache) {\n' + script + '};';
-        },
-        prefix: '/',
-        htmlmin: {
-          collapseBooleanAttributes:      true,
-          collapseWhitespace:             true,
-          removeAttributeQuotes:          true,
-          removeComments:                 true, // Only if you don't use comment directives!
-          removeEmptyAttributes:          true,
-          removeRedundantAttributes:      true,
-          removeScriptTypeAttributes:     true,
-          removeStyleLinkTypeAttributes:  true
-        }
-      }
+      options: opts
+    },
+    login: {
+      cwd: 'assets',
+      src: 'js/apps/login/templates/**/*.html',
+      dest: '.tmp/public/js/apps/login/templates.js',
+      options: opts
     }
   });
 
