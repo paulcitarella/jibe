@@ -11,6 +11,9 @@
 
 module.exports.bootstrap = function(cb) {
 
+  // Use the x-forwarded-proto to determine HTTP vs HTTPS requests
+  sails.hooks.http.app.set('trust proxy', true);
+
   // Register custom Handlebars helpers
   var helpers = require('include-all')({
     dirname: __dirname + '/../api/helpers',
