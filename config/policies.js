@@ -26,7 +26,31 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '*': ['enforceSsl']
+  '*': [
+      'enforceSsl',
+      'basicAuth',
+      'passport',
+      'sessionAuth',
+      'ModelPolicy',
+      'AuditPolicy',
+      'OwnerPolicy',
+      'PermissionPolicy',
+      'RolePolicy',
+      'CriteriaPolicy'
+    ],
+
+    AuthController: {
+      '*': [
+        'enforceSsl',
+        'passport'
+      ]
+    },
+
+    HomeController: {
+      '*': [
+        'enforceSsl'
+      ]
+    }
 
   /***************************************************************************
   *                                                                          *
