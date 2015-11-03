@@ -17,4 +17,5 @@ A [Sails](http://sailsjs.org) starter application with the following pre-configu
 * Task ownership and scoped queries
 * Angular, unit, integration, functional tests
 * DB migrations with tracking and autorun
+* Runtime REPL console
 * Deploy to Heroku
