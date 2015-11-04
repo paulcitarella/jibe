@@ -10,7 +10,7 @@
 
 <div id="task-list">
   <div class="task-list-item" ng-repeat="task in tasks">
-    <span ng-bind="task.title"></span>
+    {{task.title}}
     <div class="menu">
       <span class="fa fa-gear" data-toggle="dropdown"></span>
       <ul class="dropdown-menu">

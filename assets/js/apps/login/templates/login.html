@@ -6,7 +6,7 @@
     <input class="form-control" type="password" ng-model="password" name="password" value="" placeholder="Password" autocomplete="off" required />
   </div>
 
+  <div class="invalid-msg" ng-show="invalid">Sorry, looks like those credentials are invalid.</div>
+
   <p><button type="submit" class="btn btn-lg btn-primary with-spinner" ng-class="{spinning:loading}" ng-disabled="loading">Login<span us-spinner="{color:'#fff'}" spinner-theme="small" spinner-on="loading"></span></button></p>
 </form>
-
-{{error}}

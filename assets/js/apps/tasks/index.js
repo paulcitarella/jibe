@@ -19,4 +19,4 @@ app.config(['$routeProvider', '$locationProvider',
 app.run(['$templateCache', require('./templates')]);
 
 // Controllers
-app.controller('TaskListCtrl', ['$scope', require('./controllers/taskListCtrl')]);
+app.controller('TaskListCtrl', ['$scope', 'user', require('./controllers/taskListCtrl')]);

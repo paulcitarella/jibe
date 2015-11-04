@@ -48,7 +48,8 @@ module.exports.policies = {
 
     HomeController: {
       '*': [
-        'enforceSsl'
+        'enforceSsl',
+        'passport'
       ]
     },
 

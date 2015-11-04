@@ -1,7 +1,10 @@
-module.exports = function($scope, $timeout, $http, $window) {
+module.exports = function($scope, $timeout, $http, $window, user) {
   $scope.loading = false;
+  $scope.user = user;
 
   $scope.login = function() {
+    $scope.error = false;
+    $scope.invalid = false;
     $scope.loading = true;
 
     $http.post('/auth/local', {
@@ -10,7 +13,13 @@ module.exports = function($scope, $timeout, $http, $window) {
     }).then(function(response) {
       $window.location.href = '/tasks';
     }).catch(function(response) {
-      $scope.error = response;
+      if (response.status === 403) {
+        $scope.invalid = true;
+      } else {
+        $scope.error = true;
+      }
+    }).finally(function() {
+      $scope.loading = false;
     });
   };
 

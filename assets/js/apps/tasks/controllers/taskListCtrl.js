@@ -1,5 +1,6 @@
-module.exports = function($scope) {
+module.exports = function($scope, user) {
   $scope.tasks = [];
+  $scope.user = user;
 
   $scope.addTask = function() {
     if ($scope.newTask) {

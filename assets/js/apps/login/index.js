@@ -9,7 +9,8 @@ app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
-      templateUrl: '/js/apps/login/templates/index.html'
+      templateUrl: '/js/apps/login/templates/index.html',
+      controller: ['$scope', 'user', function($scope, user) { $scope.user = user; }]
     })
     .when('/login', {
       templateUrl: '/js/apps/login/templates/login.html',
@@ -32,4 +33,4 @@ app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
 app.run(['$templateCache', require('./templates')]);
 
 // Controllers
-app.controller('LoginCtrl', ['$scope', '$timeout', '$http', '$window', require('./controllers/loginCtrl')]);
+app.controller('LoginCtrl', ['$scope', '$timeout', '$http', '$window', 'user', require('./controllers/loginCtrl')]);
