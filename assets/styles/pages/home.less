@@ -16,7 +16,15 @@ body#home {
         box-shadow: none;
         color: #fff;
         font-weight: 300;
+        &.ng-touched {
+          &.ng-invalid {
+            border-color: @brand-danger;
+          }
+        }
       }
+    }
+    button.spinning {
+      color: rgba(255,255,255,0.25);
     }
   }
   #register {

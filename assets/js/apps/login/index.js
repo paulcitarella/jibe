@@ -1,5 +1,8 @@
 var angular = require('angular');
-var app = angular.module('login', [require('angular-route')]);
+var angularRoute = require('angular-route');
+var spinner = require('angular-spinner');
+var util = require('../../util');
+var app = angular.module('login', [angularRoute, spinner.name]);
 
 // Routes
 app.config(['$routeProvider', '$locationProvider',
@@ -22,8 +25,11 @@ app.config(['$routeProvider', '$locationProvider',
   }
 ]);
 
+// Set up spinner themes
+app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
+
 // Preload angular templates into the cache
 app.run(['$templateCache', require('./templates')]);
 
 // Controllers
-app.controller('LoginCtrl', ['$scope', require('./controllers/loginCtrl')]);
+app.controller('LoginCtrl', ['$scope', '$timeout', '$http', '$window', require('./controllers/loginCtrl')]);
