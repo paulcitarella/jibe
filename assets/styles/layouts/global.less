@@ -1,5 +1,53 @@
+// Bootstrap overrides
 @font-family-sans-serif: 'Open Sans', sans-serif;
 
+// Global styles
 .with-spinner {
   position: relative;
+}
+
+form {
+  &.ng-submitted {
+    input.form-control.ng-invalid {
+      border-color: @brand-danger;
+    }
+  }
+  .form-group {
+    input.form-control {
+      border-style: none none solid none;
+      background-color: transparent;
+      border-radius: 0;
+      outline: none;
+      box-shadow: none;
+      font-weight: 300;
+      &.ng-dirty {
+        &.ng-invalid {
+          border-color: @brand-danger;
+          ~ .form-control-feedback {
+            a {
+              color: @brand-danger;
+            }
+          }
+          ~ .help-block {
+            color: @brand-danger;
+            a {
+              color: @brand-danger;
+            }
+          }
+        }
+      }
+    }
+    .form-control-feedback {
+      pointer-events: auto;
+    }
+    .help-block {
+      font-size: @font-size-small;
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+  button.btn-primary.spinning {
+    color: rgba(255,255,255,0.25);
+  }
 }
