@@ -9,6 +9,7 @@
     "angular-route": "~1.4.7",
     "angular-spinner": "~0.8.0",
     "bootstrap": "~3.3.5",
+    "connect-redis": "~1.4.5",
     "font-awesome": "~4.4.0",
     "grunt": "~0.4.5",
     "grunt-angular-templates": "~0.5.7",
