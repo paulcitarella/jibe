@@ -1,4 +1,4 @@
-<form id="login-form" name="loginForm" ng-submit="login()">
+<form id="login-form" name="loginForm" ng-submit="loginForm.$valid && login()" novalidate autocomplete="off">
   <div class="form-group">
     <input class="form-control" type="email" ng-model="email" name="email" value="" placeholder="Email" autocomplete="off" required autofocus />
   </div>
@@ -6,7 +6,8 @@
     <input class="form-control" type="password" ng-model="password" name="password" value="" placeholder="Password" autocomplete="off" required />
   </div>
 
-  <div class="invalid-msg" ng-show="invalid">Sorry, looks like those credentials are invalid.</div>
+  <div class="error-msg" ng-show="invalid">Sorry, looks like those credentials are invalid.</div>
+  <div class="error-msg" ng-show="error">Sorry, looks like something went wrong. Please try again later.</div>
 
-  <p><button type="submit" class="btn btn-lg btn-primary with-spinner" ng-class="{spinning:loading}" ng-disabled="loading">Login<span us-spinner="{color:'#fff'}" spinner-theme="small" spinner-on="loading"></span></button></p>
+  <p><button type="submit" class="btn btn-lg btn-primary with-spinner" ng-class="{spinning:loading}" ng-disabled="loading || (loginForm.$dirty && loginForm.$invalid)">Login<span us-spinner="{color:'#fff'}" spinner-theme="small" spinner-on="loading"></span></button></p>
 </form>

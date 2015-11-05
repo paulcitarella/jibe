@@ -46,6 +46,13 @@ module.exports.policies = {
       ]
     },
 
+    UserController: {
+      create: [
+        'enforceSsl',
+        'passport'
+      ]
+    },
+
     HomeController: {
       '*': [
         'enforceSsl',

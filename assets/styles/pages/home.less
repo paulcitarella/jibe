@@ -3,10 +3,16 @@ body#home {
     margin-bottom: 20px;
   }
   form {
+    max-width: 250px;
+    margin: 0 auto;
+    &.ng-submitted {
+      input.form-control.ng-invalid {
+        border-color: @brand-danger;
+      }
+    }
     .form-group {
       text-align: center;
       input.form-control {
-        width: 240px;
         display: inline-block;
         border-style: none none solid none;
         border-color: rgba(255,255,255,0.5);
@@ -16,17 +22,32 @@ body#home {
         box-shadow: none;
         color: #fff;
         font-weight: 300;
-        &.ng-touched {
+        &.ng-dirty {
           &.ng-invalid {
             border-color: @brand-danger;
           }
+        }
+      }
+      .form-control-feedback {
+        pointer-events: auto;
+        a {
+          color: @brand-danger;
+        }
+      }
+      .help-block {
+        color: @brand-danger;
+        text-shadow: none;
+        font-size: @font-size-small;
+        a {
+          color: @brand-danger;
+          text-decoration: underline;
         }
       }
     }
     button.spinning {
       color: rgba(255,255,255,0.25);
     }
-    .invalid-msg {
+    .error-msg {
       margin-bottom: 20px;
       color: @brand-danger;
     }
