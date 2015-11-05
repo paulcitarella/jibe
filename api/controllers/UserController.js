@@ -1,11 +1,24 @@
-// api/controllers/UserController.js
+/**
+ * UserController
+ *
+ * @description :: Server-side logic for managing Users
+ */
 
-var _ = require('lodash');
-var _super = require('sails-permissions/api/controllers/UserController');
+module.exports = {
+  create: function (req, res, next) {
+    sails.services.passport.protocols.local.register(req.body, function (err, user) {
+      if (err) return next(err);
 
-_.merge(exports, _super);
-_.merge(exports, {
+      req.login(user, function (err) {
+        if (err) return next(err);
 
-  // Extend with custom logic here by adding additional fields, methods, etc.
+        req.session.authenticated = true;
+        res.ok(user);
+      });
+    });
+  },
 
-});
+  me: function (req, res) {
+    res.ok(req.user);
+  }
+};
