@@ -15,6 +15,7 @@ A [Sails](http://sailsjs.org) starter application with the following pre-configu
 * Postgres DB
 * To do list model
 * Task ownership and scoped queries
+* Background jobs
 * Angular, unit, integration, functional tests
 * DB migrations with tracking and autorun
 * Runtime REPL console
