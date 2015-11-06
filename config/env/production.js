@@ -12,6 +12,12 @@
 
 module.exports = {
 
+  session: {
+    cookie: {
+      secure: true
+    }
+  }
+
   /***************************************************************************
    * Set the default database connection for models in the production        *
    * environment (see config/connections.js and config/models.js )           *

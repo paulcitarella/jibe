@@ -29,12 +29,6 @@
 
 module.exports = {
 
-  permissions: {
-    adminUsername: 'admin',
-    adminEmail: 'admin@asdf.com',
-    adminPassword: 'asdf1234'
-  }
-
   /***************************************************************************
    * Your SSL certificate and key, if you want to be able to serve HTTP      *
    * responses over https:// and/or use websockets over the wss:// protocol  *
