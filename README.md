@@ -11,7 +11,7 @@ A [Sails](http://sailsjs.org) starter application with the following pre-configu
 * Live reloading in dev
 * SSL
 * Login via Passport
-* Cookie-based sessions
+* Clusterable sessions with secure cookies
 * Postgres DB
 * To do list model
 * Task ownership and scoped queries
