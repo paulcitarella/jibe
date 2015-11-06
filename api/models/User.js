@@ -6,6 +6,7 @@ var _super = require('sails-permissions/api/models/User');
 _.merge(exports, _super);
 _.merge(exports, {
 
+  tableName: 'person',
   attributes: {
     firstname: {
       type: 'string',

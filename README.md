@@ -20,3 +20,7 @@ A [Sails](http://sailsjs.org) starter application with the following pre-configu
 * DB migrations with tracking and autorun
 * Runtime REPL console
 * Deploy to Heroku
+
+### To Document
+
+* Adding an Angular app (requires grunt config updates)
