@@ -1,7 +1,4 @@
 {
   "generators": {
-    "modules": {
-      "permissions-api": "sails-permissions/generator"
-    }
   }
 }

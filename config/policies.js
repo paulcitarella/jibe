@@ -30,13 +30,7 @@ module.exports.policies = {
       'enforceSsl',
       'basicAuth',
       'passport',
-      'sessionAuth',
-      'ModelPolicy',
-      'AuditPolicy',
-      'OwnerPolicy',
-      'PermissionPolicy',
-      'RolePolicy',
-      'CriteriaPolicy'
+      'sessionAuth'
     ],
 
     AuthController: {
@@ -57,15 +51,6 @@ module.exports.policies = {
       '*': [
         'enforceSsl',
         'passport'
-      ]
-    },
-
-    TaskController: {
-      '*': [
-        'enforceSsl',
-        'basicAuth',
-        'passport',
-        'sessionAuth'
       ]
     }
 
