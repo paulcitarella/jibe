@@ -1,6 +1,6 @@
 # jibe
 
-A [Sails](http://sailsjs.org) starter application with the following pre-configured.
+A production-grade [Sails.js](http://sailsjs.org) starter application with the following pre-configured.
 
 * Handlebars for server-side templates
 * Boostrap less compiled in pipeline
@@ -21,6 +21,13 @@ A [Sails](http://sailsjs.org) starter application with the following pre-configu
 * Runtime REPL console
 * Deploy to Heroku
 
-### To Document
+### To Run
 
-* Adding an Angular app (requires grunt config updates)
+* Make sure a Redis server is running on localhost (fresh install with default config)
+* Create a local PostgreSQL database matching the config in `config/connections.js`
+* `npm install`
+* `sails lift`
+
+### How Tos
+
+* TODO: Adding a new Angular app (requires grunt config updates)
