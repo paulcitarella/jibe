@@ -9,12 +9,12 @@ A [Sails](http://sailsjs.org) starter application with the following pre-configu
 * Pre-compiled Angular templates
 * Asset versioning for browser cacheing
 * Live reloading in dev
-* SSL
+* Enforced SSL in production
 * Login via Passport
 * Clusterable sessions with secure cookies
 * Postgres DB
-* To do list model
 * Task ownership and scoped queries
+* Admin screen and role-based access
 * Background jobs
 * Angular, unit, integration, functional tests
 * DB migrations with tracking and autorun
