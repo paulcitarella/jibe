@@ -13,7 +13,7 @@ _.merge(exports, {
     delete req.session.passport;
     req.session.authenticated = false;
 
-    if (!req.isSocket) {
+    if (!req.isSocket && !req.wantsJSON) {
       res.redirect(req.query.next || '/');
     }
     else {

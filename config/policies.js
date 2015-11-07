@@ -52,6 +52,18 @@ module.exports.policies = {
         'enforceSsl',
         'passport'
       ]
+    },
+
+    TaskController: {
+      '*': [
+        'enforceSsl',
+        'passport',
+        'sessionAuth'
+      ],
+      'update': false,
+      'populate': false,
+      'add': false,
+      'remove': false
     }
 
   /***************************************************************************

@@ -15,5 +15,9 @@ module.exports = {
     owner: {
       model: 'user'
     }
+  },
+
+  ownedBy: function(user) {
+    return Task.find().where({owner: user.id});
   }
 };

@@ -32,9 +32,9 @@ module.exports.routes = {
     }
   },
 
-  '/tasklist': {
+  'get /tasks': {
     controller: 'TaskController',
-    action: 'tasklist',
+    action: 'find',
     locals: {
       pageId: 'tasks',
       ngApp: 'tasks',
