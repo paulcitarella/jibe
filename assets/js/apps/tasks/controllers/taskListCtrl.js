@@ -8,8 +8,7 @@ module.exports = function($scope, $http, user, tasks) {
   $scope.addTask = function() {
     if ($scope.newTask) {
       var task = {
-        title:$scope.newTask,
-        owner: user
+        title: $scope.newTask
       };
       $scope.tasks.push(task);
       $scope.newTask = null;

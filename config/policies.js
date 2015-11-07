@@ -58,7 +58,8 @@ module.exports.policies = {
       '*': [
         'enforceSsl',
         'passport',
-        'sessionAuth'
+        'sessionAuth',
+        'filterByOwner'
       ],
       'update': false,
       'populate': false,
