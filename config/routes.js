@@ -32,6 +32,8 @@ module.exports.routes = {
     }
   },
 
+  'get /users/me': 'UserController.me',
+
   'get /tasks': {
     controller: 'TaskController',
     action: 'find',

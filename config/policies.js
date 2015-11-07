@@ -16,6 +16,19 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.policies.html
  */
 
+var _ = require('lodash');
+
+var loggedIn = [
+  'enforceSsl',
+  'basicAuth',
+  'passport',
+  'sessionAuth'
+];
+
+var open = [
+  'enforceSsl',
+  'passport'
+];
 
 module.exports.policies = {
 
@@ -26,46 +39,32 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '*': [
-      'enforceSsl',
-      'basicAuth',
-      'passport',
-      'sessionAuth'
-    ],
+  '*': loggedIn,
 
-    AuthController: {
-      '*': [
-        'enforceSsl',
-        'passport'
-      ]
-    },
+  AuthController: {
+    '*': open
+  },
 
-    UserController: {
-      create: [
-        'enforceSsl',
-        'passport'
-      ]
-    },
+  UserController: {
+    '*': false,
+    create: open,
+    me: open
+  },
 
-    HomeController: {
-      '*': [
-        'enforceSsl',
-        'passport'
-      ]
-    },
+  HomeController: {
+    '*': open
+  },
 
-    TaskController: {
-      '*': [
-        'enforceSsl',
-        'passport',
-        'sessionAuth',
-        'filterByOwner'
-      ],
-      'update': false,
-      'populate': false,
-      'add': false,
-      'remove': false
-    }
+  TaskController: {
+    '*': _.flatten([
+      loggedIn,
+      'filterByOwner'
+    ]),
+    update: false,
+    populate: false,
+    add: false,
+    remove: false
+  }
 
   /***************************************************************************
   *                                                                          *
