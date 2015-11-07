@@ -11,7 +11,7 @@ module.exports = function($scope, $timeout, $http, $window, user) {
       identifier: $scope.email,
       password: $scope.password
     }).then(function(response) {
-      $window.location.href = '/tasks';
+      $window.location.href = '/tasklist';
     }).catch(function(response) {
       if (response.status === 403) {
         $scope.invalid = true;
@@ -34,7 +34,7 @@ module.exports = function($scope, $timeout, $http, $window, user) {
       password: $scope.password
 
     }).then(function(response) {
-      $window.location.href = '/tasks';
+      $window.location.href = '/tasklist';
 
     }).catch(function(response) {
       if (response.status === 400) {

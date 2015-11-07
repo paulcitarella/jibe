@@ -2,17 +2,23 @@
   <div class="form-group has-feedback">
       <input type="text" name="newTask" ng-model="newTask" class="form-control" placeholder="New task" autofocus>
       <span class="form-control-feedback"><a href="javascript:void(0)" ng-click="addTask()" class="with-tooltip" title="Add a new task (Enter)"><span class="fa fa-magic"></span></a></span>
+      <span id="spinner" us-spinner="{color: '#aaa'}" spinner-theme="small" spinner-on="loading"></span>
   </div>
 </form>
+
+<div class="alert alert-danger" ng-if="error" role="alert">
+  Sorry, looks like something went wrong. Please try again later.
+</div>
 
 <div id="task-list">
   <div class="task-list-item" ng-repeat="task in tasks">
     {{task.title}}
     <div class="menu">
-      <span class="fa fa-gear" data-toggle="dropdown"></span>
-      <ul class="dropdown-menu">
-        <li><a href="javascript:void(0)" ng-click="deleteTask(task)">Delete</a></li>
+      <ul class="float-menu list-inline list-unstyled">
+        <li><a href="javascript:void(0)" ng-click="deleteTask(task)"><span class="fa fa-check"></span></a></li>
+        <li><a href="javascript:void(0)" ng-click="deleteTask(task)"><span class="fa fa-times"></span></a></li>
       </ul>
+      <span class="fa fa-angle-left"></span>
     </div>
   </div>
 </div>

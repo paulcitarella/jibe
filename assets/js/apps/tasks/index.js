@@ -1,5 +1,8 @@
 var angular = require('angular');
-var app = angular.module('tasks', [require('angular-route')]);
+var angularRoute = require('angular-route');
+var spinner = require('angular-spinner');
+var util = require('../../util');
+var app = angular.module('tasks', [angularRoute, spinner.name]);
 
 // Routes
 app.config(['$routeProvider', '$locationProvider',
@@ -15,8 +18,11 @@ app.config(['$routeProvider', '$locationProvider',
   }
 ]);
 
+// Set up spinner themes
+app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
+
 // Preload angular templates into the cache
 app.run(['$templateCache', require('./templates')]);
 
 // Controllers
-app.controller('TaskListCtrl', ['$scope', 'user', require('./controllers/taskListCtrl')]);
+app.controller('TaskListCtrl', ['$scope', '$http', 'user', 'tasks', require('./controllers/taskListCtrl')]);

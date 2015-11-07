@@ -16,6 +16,10 @@ _.merge(exports, {
       type: 'string',
       notNull: true
     },
+    tasks: {
+      collection: 'task',
+      via: 'owner'
+    }
   }
 
 });

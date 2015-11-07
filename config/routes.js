@@ -32,9 +32,9 @@ module.exports.routes = {
     }
   },
 
-  '/tasks': {
+  '/tasklist': {
     controller: 'TaskController',
-    action: 'index',
+    action: 'tasklist',
     locals: {
       pageId: 'tasks',
       ngApp: 'tasks',
