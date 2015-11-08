@@ -3,6 +3,6 @@
  * as a JSON string.
  */
 
-module.exports = function (value, defaultValue) {
+module.exports = function (value, options) {
   return JSON.stringify(value);
 };

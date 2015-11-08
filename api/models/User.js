@@ -19,6 +19,10 @@ _.merge(exports, {
     tasks: {
       collection: 'task',
       via: 'owner'
+    },
+    roles: {
+      collection: 'role',
+      via: 'users'
     }
   }
 

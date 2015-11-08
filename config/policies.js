@@ -22,7 +22,8 @@ var loggedIn = [
   'enforceSsl',
   'basicAuth',
   'passport',
-  'sessionAuth'
+  'sessionAuth',
+  'defineRoles'
 ];
 
 var open = [

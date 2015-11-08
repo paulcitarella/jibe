@@ -8,6 +8,7 @@
     "angular": "~1.4.7",
     "angular-route": "~1.4.7",
     "angular-spinner": "~0.8.0",
+    "bluebird": "~3.0.5",
     "bootstrap": "~3.3.5",
     "connect-redis": "~1.4.5",
     "font-awesome": "~4.4.0",
