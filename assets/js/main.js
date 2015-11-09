@@ -4,8 +4,9 @@ window.$ = window.jQuery = jQuery;
 var Bootstrap = require('bootstrap');
 
 // Apps
-var tasks = require('./apps/tasks');
 var login = require('./apps/login');
+var users = require('./apps/users');
+var tasks = require('./apps/tasks');
 
 // Global code
 $(document).ready(function() {

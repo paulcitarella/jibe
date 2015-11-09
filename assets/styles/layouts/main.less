@@ -14,6 +14,34 @@ html.app {
         background-repeat: no-repeat;
       }
     }
+    .admin-list {
+      &:hover {
+        td.row-nav {
+          .list-inline {
+            visibility: visible;
+            a {
+              color: darken(@gray-lighter, 5%);
+            }
+          }
+        }
+      }
+      tr {
+        &:hover {
+          td.row-nav .list-inline {
+            visibility: visible;
+            a {
+              color: @link-color;
+            }
+          }
+        }
+      }
+      td.row-nav {
+        text-align: right;
+        .list-inline {
+          visibility: hidden;
+        }
+      }
+    }
   }
   form {
     .form-group {

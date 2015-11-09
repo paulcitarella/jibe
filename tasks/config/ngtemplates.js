@@ -23,16 +23,22 @@ var opts = {
 module.exports = function(grunt) {
 
   grunt.config.set('ngtemplates', {
-    tasks: {
-      cwd: 'assets',
-      src: 'js/apps/tasks/templates/**/*.html',
-      dest: '.tmp/public/js/apps/tasks/templates.js',
-      options: opts
-    },
     login: {
       cwd: 'assets',
       src: 'js/apps/login/templates/**/*.html',
       dest: '.tmp/public/js/apps/login/templates.js',
+      options: opts
+    },
+    users: {
+      cwd: 'assets',
+      src: 'js/apps/users/templates/**/*.html',
+      dest: '.tmp/public/js/apps/users/templates.js',
+      options: opts
+    },
+    tasks: {
+      cwd: 'assets',
+      src: 'js/apps/tasks/templates/**/*.html',
+      dest: '.tmp/public/js/apps/tasks/templates.js',
       options: opts
     }
   });

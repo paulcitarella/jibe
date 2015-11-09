@@ -47,9 +47,16 @@ module.exports.policies = {
   },
 
   UserController: {
-    '*': false,
+    '*': _.flatten([
+      loggedIn,
+      'isAdmin'
+    ]),
     create: open,
-    me: open
+    me: open,
+    update: false,
+    populate: false,
+    add: false,
+    remove: false
   },
 
   HomeController: {

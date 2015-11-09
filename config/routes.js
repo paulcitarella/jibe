@@ -34,6 +34,16 @@ module.exports.routes = {
 
   'get /users/me': 'UserController.me',
 
+  'get /users': {
+    controller: 'UserController',
+    action: 'find',
+    populate: true,
+    locals: {
+      pageId: 'users',
+      ngApp: 'users'
+    }
+  },
+
   'get /tasks': {
     controller: 'TaskController',
     action: 'find',
