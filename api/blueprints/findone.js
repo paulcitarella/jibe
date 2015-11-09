@@ -14,6 +14,7 @@ module.exports = function(req, res) {
 
   var query = Model.find({id: pk})
   .where(actionUtil.parseCriteria(req));
+  if (req.options.populateOnly) req.params.populate = req.options.populateOnly;
   query = actionUtil.populateEach(query, req);
   query.exec(function found(err, matches) {
     if (err) return res.serverError(err);

@@ -37,7 +37,6 @@ module.exports.routes = {
   'get /users': {
     controller: 'UserController',
     action: 'find',
-    populate: true,
     locals: {
       pageId: 'users',
       ngApp: 'users'
