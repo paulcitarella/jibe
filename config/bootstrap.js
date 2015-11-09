@@ -10,6 +10,7 @@
  */
 
 var Promise = require('bluebird');
+var _ = require('lodash');
 
 module.exports.bootstrap = function(cb) {
 
@@ -52,7 +53,18 @@ module.exports.bootstrap = function(cb) {
         sails.log.error(err);
       })
     );
+
+    // Create some dummy users for testing
+    _.times(50, function(n) {
+      User.register({
+        firstname: 'Test' + (n + 1),
+        lastname: 'User',
+        email: 'user' + (n + 1) + '@asdf.com',
+        password: 'asdf1234'
+      });
+    });
   });
+
 
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)

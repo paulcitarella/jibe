@@ -1,7 +1,13 @@
-<h1>Users</h1>
-
 <div class="row" ng-controller="UserListCtrl as userListCtrl">
   <div class="col-md-9">
+
+    <div class="page-header">
+      <h1>Users</h1>
+      <ul class="header-nav">
+        <li><a href="javascript:void(0)" class="with-tooltip" title="Add a new user" data-container="body"><span class="fa fa-plus"></span></a></li>
+      </ul>
+      <span id="spinner" us-spinner="{color: '#aaa'}" spinner-theme="small" spinner-on="userListCtrl.loading"></span>
+    </div>
     <div class="alert alert-danger" ng-show="userListCtrl.error">Sorry, looks like something went wrong. Please try again later.</div>
 
     <div class="admin-list">

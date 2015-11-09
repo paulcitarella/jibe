@@ -14,6 +14,37 @@ html.app {
         background-repeat: no-repeat;
       }
     }
+    .page-header {
+      position: relative;
+      &:hover {
+        ul.header-nav {
+          a {
+            color: @link-color;
+          }
+        }
+      }
+      ul.header-nav {
+        position: absolute;
+        right: 0;
+        bottom: 20px;
+        margin: 0;
+        font-size: 1.2em;
+        .list-unstyled;
+        .list-inline;
+        .pull-right;
+        a {
+          color: darken(@gray-lighter, 5%);
+          &:hover {
+            color: @link-hover-color;
+          }
+        }
+      }
+      #spinner {
+        position: absolute;
+        top: 25px;
+        right: -22px;
+      }
+    }
     .admin-list {
       &:hover {
         td.row-nav {
@@ -31,6 +62,9 @@ html.app {
             visibility: visible;
             a {
               color: @link-color;
+              &:hover {
+                color: @link-hover-color;
+              }
             }
           }
         }
