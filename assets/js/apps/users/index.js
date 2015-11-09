@@ -25,4 +25,5 @@ app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
 app.run(['$templateCache', require('./templates')]);
 
 // Controllers
-app.controller('UserListCtrl', ['$scope', '$http', '$window', 'users', require('./controllers/userListCtrl')]);
+app.controller('UserListCtrl', ['$window', 'userService', require('./controllers/userListCtrl')]);
+app.factory('userService', ['$http', '$q', 'users', require('./services/userService')]);

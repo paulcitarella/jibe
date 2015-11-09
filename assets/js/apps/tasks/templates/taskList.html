@@ -1,7 +1,7 @@
 <form ng-submit="addTask()" autocomplete="off">
   <div class="form-group has-feedback">
       <input type="text" name="newTask" ng-model="newTask" class="form-control" placeholder="New task" autofocus>
-      <span class="form-control-feedback"><a href="javascript:void(0)" ng-click="addTask()" class="with-tooltip" title="Add a new task (Enter)"><span class="fa fa-magic"></span></a></span>
+      <span class="form-control-feedback"><a href="javascript:void(0)" ng-click="addTask()" class="with-tooltip" data-container="body" title="Add a new task (Enter)"><span class="fa fa-magic"></span></a></span>
       <span id="spinner" us-spinner="{color: '#aaa'}" spinner-theme="small" spinner-on="loading"></span>
   </div>
 </form>

@@ -11,7 +11,6 @@ var tasks = require('./apps/tasks');
 // Global code
 $(document).ready(function() {
   $('body').tooltip({
-    container: 'body',
     selector: '.with-tooltip',
     delay: { "show": 500, "hide": 100 }
   });
