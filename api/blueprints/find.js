@@ -2,14 +2,14 @@
  * Overridden find bluprint
  *
  * Adds an optional `populateOnly` request option to selectively
- * populate associations.
+ * populate associations, and the X-Total-Count response header
+ * for pagination.
  */
 
 var actionUtil = require('sails/lib/hooks/blueprints/actionUtil');
 var _ = require('lodash');
 
 module.exports = function findRecords (req, res) {
-  var DEFAULT_POPULATE_LIMIT = sails.config.blueprints.defaultLimit || 30;
   var Model = actionUtil.parseModel(req);
 
   if ( actionUtil.parsePk(req) ) {
@@ -24,9 +24,7 @@ module.exports = function findRecords (req, res) {
   if (req.options.populateOnly) req.params.populate = req.options.populateOnly;
   query = actionUtil.populateEach(query, req);
 
-  query.exec(function found(err, matchingRecords) {
-    if (err) return res.serverError(err);
-
+  query.then(function(matchingRecords) {
     if (req._sails.hooks.pubsub && req.isSocket) {
       Model.subscribe(req, matchingRecords);
       if (req.options.autoWatch) { Model.watch(req); }
@@ -34,7 +32,15 @@ module.exports = function findRecords (req, res) {
         actionUtil.subscribeDeep(req, record);
       });
     }
+    return matchingRecords;
 
-    res.ok(matchingRecords);
+  }).then(function(matchingRecords) {
+    return Model.count().then(function(count) {
+      res.set('X-Total-Count', count);
+      res.ok(matchingRecords);
+    });
+
+  }).catch(function(err) {
+    res.serverError(err);
   });
 };

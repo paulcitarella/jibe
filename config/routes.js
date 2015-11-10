@@ -37,6 +37,7 @@ module.exports.routes = {
   'get /users': {
     controller: 'UserController',
     action: 'find',
+    limit: 30,
     locals: {
       pageId: 'users',
       ngApp: 'users'

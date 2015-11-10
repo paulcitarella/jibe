@@ -1,5 +1,6 @@
 <script type="text/javascript">
-  angular.module('{{ngApp}}').value("users", {{{default (json data) 'null'}}});
+  angular.module('{{ngApp}}').value("data", {{{default (json data) 'null'}}});
+  angular.module('{{ngApp}}').value("dataTotalCount", {{dataTotalCount}});
 </script>
 
 <div ng-view ng-cloak></div>

@@ -1,10 +1,13 @@
 var _ = require('lodash');
 
-module.exports = function($window, userService) {
+module.exports = function($scope, $window, userService) {
   var self = this;
   self.error = false;
   self.loading = 0;
-  self.users = userService.users;
+  self.paging = 0;
+  self.userService = userService;
+  $scope.userService = userService; // Required to watch service variables
+  self.toPageNum = 1;
 
   self.roleList = function(user) {
     return _.map(user.roles, function(role) { return role.name; }).join(', ');
@@ -23,4 +26,49 @@ module.exports = function($window, userService) {
       });
     }
   };
+
+  self.nextPage = function() {
+    self.error = false;
+    self.paging++;
+
+    userService.nextPage().catch(function(response) {
+        self.error = true;
+
+      }).finally(function() {
+        self.paging--;
+      });
+  };
+
+  self.previousPage = function() {
+    self.error = false;
+    self.paging++;
+
+    userService.previousPage().catch(function(response) {
+        self.error = true;
+
+      }).finally(function() {
+        self.paging--;
+      });
+  };
+
+  self.toPage = _.debounce(function() {
+    self.error = false;
+    self.paging++;
+
+    userService.toPage(self.toPageNum).catch(function(response) {
+        self.error = true;
+
+      }).finally(function() {
+        self.paging--;
+      });
+  }, 500);
+
+  self.resetPageNum = function() {
+    self.toPageNum = userService.currentPage;
+  };
+
+  $scope.$watch('userService.currentPage', function(newValue, oldValue) {
+    self.toPageNum = newValue;
+  });
+
 };

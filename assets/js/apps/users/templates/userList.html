@@ -2,7 +2,7 @@
   <div class="col-md-9">
 
     <div class="page-header">
-      <h1>Users</h1>
+      <h1>Users <small>({{userListCtrl.userService.totalCount}})</small></h1>
       <ul class="header-nav">
         <li><a href="javascript:void(0)" class="with-tooltip" title="Add a new user" data-container="body"><span class="fa fa-plus"></span></a></li>
       </ul>
@@ -21,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="user in userListCtrl.users">
+          <tr ng-repeat="user in userListCtrl.userService.users">
             <td>{{user.firstname}} {{user.lastname}}</td>
             <td>{{user.email}}</td>
             <td>{{userListCtrl.roleList(user)}}</td>
@@ -34,6 +34,28 @@
           </tr>
         </tbody>
       </table>
+
+      <nav class="paging">
+        <ul class="paginator" ng-class="{spinning: userListCtrl.paging}">
+          <li class="previous" ng-class="{disabled: !userListCtrl.userService.hasPreviousPage()}">
+            <a href="javascript:void(0)" ng-click="userListCtrl.previousPage()">
+              <span class="fa fa-chevron-left"></span>
+            </a>
+          </li>
+          <li class="current">
+            <form>
+              <input type="text" class="form-control" id="current-page" ng-model="userListCtrl.toPageNum" ng-change="userListCtrl.toPage()" ng-blur="userListCtrl.resetPageNum()" ng-disabled="userListCtrl.paging" />
+            </form>
+          </li>
+          <li class="count">of {{userListCtrl.userService.getPageCount()}}</li>
+          <li class="next" ng-class="{disabled: !userListCtrl.userService.hasNextPage()}">
+            <a href="javascript:void(0)" ng-click="userListCtrl.nextPage()">
+              <span class="fa fa-chevron-right"></span>
+            </a>
+          </li>
+        </ul>
+        <span id="paging-spinner" us-spinner="{color: '#aaa'}" spinner-theme="small" spinner-on="userListCtrl.paging"></span>
+      </nav>
     </div>
 
   </div>
