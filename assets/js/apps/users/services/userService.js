@@ -1,29 +1,8 @@
 var _ = require('lodash');
+var util = require('../../../util');
 
 module.exports = function($http, $q, data, dataTotalCount) {
-  var paginator = {
-    currentPage: 1,
-    totalCount: dataTotalCount,
-    pageSize: data.length, // Set page size based on init data size
-
-    setCount: function(response) {
-      var totalCount = response.headers('X-Total-Count');
-      if (totalCount) paginator.totalCount = totalCount;
-    },
-
-    hasNextPage: function() {
-      var hasNext = paginator.totalCount > (paginator.pageSize * paginator.currentPage);
-      return hasNext;
-    },
-
-    hasPreviousPage: function() {
-      return paginator.currentPage > 1;
-    },
-
-    getPageCount: function() {
-      return Math.ceil(paginator.totalCount / paginator.pageSize);
-    }
-  };
+  var paginator = util.paginator(dataTotalCount, data.length); // Set page size based on init data size
 
   var userService = {
     users: data || [],
