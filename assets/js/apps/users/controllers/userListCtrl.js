@@ -5,8 +5,10 @@ module.exports = function($scope, $window, userService) {
   self.error = false;
   self.loading = 0;
   self.paging = 0;
-  self.userService = userService;
-  $scope.userService = userService; // Required to watch service variables
+  self.users = userService.users;
+  // self.userService = userService;
+  self.paginator = userService.paginator;
+  $scope.paginator = userService.paginator; // Required to watch service variables
   self.toPageNum = 1;
 
   self.roleList = function(user) {
@@ -64,10 +66,10 @@ module.exports = function($scope, $window, userService) {
   }, 500);
 
   self.resetPageNum = function() {
-    self.toPageNum = userService.currentPage;
+    self.toPageNum = self.paginator.currentPage;
   };
 
-  $scope.$watch('userService.currentPage', function(newValue, oldValue) {
+  $scope.$watch('paginator.currentPage', function(newValue, oldValue) {
     self.toPageNum = newValue;
   });
 

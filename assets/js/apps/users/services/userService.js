@@ -1,11 +1,32 @@
 var _ = require('lodash');
 
 module.exports = function($http, $q, data, dataTotalCount) {
-  var userService = {
-    users: data || [],
+  var paginator = {
     currentPage: 1,
     totalCount: dataTotalCount,
     pageSize: data.length, // Set page size based on init data size
+
+    setCount: function(response) {
+      var totalCount = response.headers('X-Total-Count');
+      if (totalCount) paginator.totalCount = totalCount;
+    },
+
+    hasNextPage: function() {
+      var hasNext = paginator.totalCount > (paginator.pageSize * paginator.currentPage);
+      return hasNext;
+    },
+
+    hasPreviousPage: function() {
+      return paginator.currentPage > 1;
+    },
+
+    getPageCount: function() {
+      return Math.ceil(paginator.totalCount / paginator.pageSize);
+    }
+  };
+
+  var userService = {
+    users: data || [],
 
     delete: function(user) {
       _.remove(userService.users, function(it) { return it.id === user.id; });
@@ -13,14 +34,14 @@ module.exports = function($http, $q, data, dataTotalCount) {
     },
 
     nextPage: function() {
-      if (!userService.hasNextPage()) return $q.resolve(false);
+      if (!paginator.hasNextPage()) return $q.resolve(false);
 
       return $q(function(resolve, reject) {
-        $http.get('/users?skip=' + (userService.pageSize * userService.currentPage))
+        $http.get('/users?skip=' + (paginator.pageSize * paginator.currentPage))
           .then(function(response) {
-            setCount(response);
-            userService.currentPage++;
-            replaceUsers(response.data);
+            paginator.setCount(response);
+            paginator.currentPage++;
+            angular.copy(response.data, userService.users);
             resolve(response.data);
           }).catch(function(err) {
             reject(err);
@@ -29,14 +50,14 @@ module.exports = function($http, $q, data, dataTotalCount) {
     },
 
     previousPage: function() {
-      if (userService.currentPage <= 1) return $q.resolve(false);
+      if (paginator.currentPage <= 1) return $q.resolve(false);
 
       return $q(function(resolve, reject) {
-        $http.get('/users?skip=' + (userService.pageSize * (userService.currentPage - 2)))
+        $http.get('/users?skip=' + (paginator.pageSize * (paginator.currentPage - 2)))
           .then(function(response) {
-            setCount(response);
-            userService.currentPage--;
-            replaceUsers(response.data);
+            paginator.setCount(response);
+            paginator.currentPage--;
+            angular.copy(response.data, userService.users);
             resolve(response.data);
           }).catch(function(err) {
             reject(err);
@@ -45,14 +66,14 @@ module.exports = function($http, $q, data, dataTotalCount) {
     },
 
     toPage: function(toPageNum) {
-      if (toPageNum < 1 || toPageNum > userService.getPageCount()) return $q.resolve(false);
+      if (toPageNum < 1 || toPageNum > paginator.getPageCount()) return $q.resolve(false);
 
       return $q(function(resolve, reject) {
-        $http.get('/users?skip=' + (userService.pageSize * (toPageNum - 1)))
+        $http.get('/users?skip=' + (paginator.pageSize * (toPageNum - 1)))
           .then(function(response) {
-            setCount(response);
-            userService.currentPage = toPageNum;
-            replaceUsers(response.data);
+            paginator.setCount(response);
+            paginator.currentPage = toPageNum;
+            angular.copy(response.data, userService.users);
             resolve(response.data);
           }).catch(function(err) {
             reject(err);
@@ -61,31 +82,8 @@ module.exports = function($http, $q, data, dataTotalCount) {
 
     },
 
-    hasNextPage: function() {
-      var hasNext = userService.totalCount > (userService.pageSize * userService.currentPage);
-      return hasNext;
-    },
-
-    hasPreviousPage: function() {
-      return userService.currentPage > 1;
-    },
-
-    getPageCount: function() {
-      return Math.ceil(userService.totalCount / userService.pageSize);
-    }
+    paginator: paginator
   };
-
-  function replaceUsers(data) {
-    userService.users.splice(0, userService.users.length);
-    _.each(data, function(it) {
-      userService.users.push(it);
-    });
-  }
-
-  function setCount(response) {
-    var totalCount = response.headers('X-Total-Count');
-    if (totalCount) userService.totalCount = totalCount;
-  }
 
   return userService;
 };
