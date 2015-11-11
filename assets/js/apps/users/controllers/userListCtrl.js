@@ -19,7 +19,7 @@ module.exports = function($scope, $window, userService) {
       self.error = false;
       self.loading++;
 
-      userService.delete(user).catch(function(response) {
+      userService.delete(user).catch(function(err) {
         self.error = true;
 
       }).finally(function() {
@@ -32,7 +32,7 @@ module.exports = function($scope, $window, userService) {
     self.error = false;
     self.paging++;
 
-    userService.nextPage().catch(function(response) {
+    userService.nextPage().catch(function(err) {
         self.error = true;
 
       }).finally(function() {
@@ -44,7 +44,7 @@ module.exports = function($scope, $window, userService) {
     self.error = false;
     self.paging++;
 
-    userService.previousPage().catch(function(response) {
+    userService.previousPage().catch(function(err) {
         self.error = true;
 
       }).finally(function() {
@@ -56,7 +56,7 @@ module.exports = function($scope, $window, userService) {
     self.error = false;
     self.paging++;
 
-    userService.toPage(self.toPageNum).catch(function(response) {
+    userService.toPage(self.toPageNum).catch(function(err) {
         self.error = true;
 
       }).finally(function() {

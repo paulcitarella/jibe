@@ -5,16 +5,25 @@ var util = require('../../util');
 var app = angular.module('users', [angularRoute, spinner.name]);
 
 // Routes
-app.config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', '$locationProvider', '$httpProvider',
+  function($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
     .when('/', {
       templateUrl: '/js/apps/users/templates/userList.html',
-      controller: 'UserListCtrl'
+      controller: 'UserListCtrl',
+      controllerAs: 'userListCtrl'
+    })
+    .when('/edit/:id', {
+      templateUrl: '/js/apps/users/templates/userEdit.html',
+      controller: 'UserEditCtrl',
+      controllerAs: 'userEditCtrl'
     })
     .otherwise({
         redirectTo: '/'
     });
+
+    // DEBUG: Introduce delay into all http calls
+    $httpProvider.interceptors.push(["$q", "$timeout", util.configHttpDelay]);
   }
 ]);
 
@@ -26,4 +35,5 @@ app.run(['$templateCache', require('./templates')]);
 
 // Controllers
 app.controller('UserListCtrl', ['$scope', '$window', 'userService', require('./controllers/userListCtrl')]);
+app.controller('UserEditCtrl', ['$routeParams', 'userService', require('./controllers/userEditCtrl')]);
 app.factory('userService', ['$http', '$q', 'data', 'dataTotalCount', require('./services/userService')]);

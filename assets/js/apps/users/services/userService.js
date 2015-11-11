@@ -7,9 +7,27 @@ module.exports = function($http, $q, data, dataTotalCount) {
   var userService = {
     users: data || [],
 
+    get: function(id) {
+      var user = _.find(userService.users, function(it) { return it.id === id; });
+      if (user) return $q.resolve(_.merge({}, user)); // Deep copy so unsaved edits aren't cached
+
+      return $q(function(resolve, reject) {
+        $http.get('/users/' + id)
+          .then(function(response) {
+            resolve(response.data);
+          }).catch(reject);
+      });
+    },
+
     delete: function(user) {
       _.remove(userService.users, function(it) { return it.id === user.id; });
-      return $http.delete('/users/' + user.id);
+
+      return $q(function(resolve, reject) {
+        $http.delete('/users/' + user.id)
+          .then(function(response) {
+            resolve(response.data);
+          }).catch(reject);
+      });
     },
 
     nextPage: function() {
@@ -22,9 +40,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
             paginator.currentPage++;
             angular.copy(response.data, userService.users);
             resolve(response.data);
-          }).catch(function(err) {
-            reject(err);
-          });
+          }).catch(reject);
       });
     },
 
@@ -38,9 +54,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
             paginator.currentPage--;
             angular.copy(response.data, userService.users);
             resolve(response.data);
-          }).catch(function(err) {
-            reject(err);
-          });
+          }).catch(reject);
       });
     },
 
@@ -54,9 +68,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
             paginator.currentPage = toPageNum;
             angular.copy(response.data, userService.users);
             resolve(response.data);
-          }).catch(function(err) {
-            reject(err);
-          });
+          }).catch(reject);
       });
 
     },

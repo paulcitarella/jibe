@@ -1,10 +1,10 @@
-<div class="row" ng-controller="UserListCtrl as userListCtrl">
+<div class="row">
   <div class="col-md-9">
 
     <div class="page-header">
       <h1>Users <small>({{userListCtrl.paginator.totalCount}})</small></h1>
       <ul class="header-nav">
-        <li><a href="javascript:void(0)" class="with-tooltip" title="Add a new user" data-container="body"><span class="fa fa-plus"></span></a></li>
+        <li><a href="javascript:void(0)" class="with-tooltip" title="Add a new user" data-container=".row"><span class="fa fa-plus"></span></a></li>
       </ul>
       <span id="spinner" us-spinner="{color: '#aaa'}" spinner-theme="small" spinner-on="userListCtrl.loading"></span>
     </div>
@@ -27,7 +27,7 @@
             <td>{{userListCtrl.roleList(user)}}</td>
             <td class="row-nav">
               <ul class="list-inline">
-                <li><a href="javascript:void(0)"><span class="fa fa-pencil with-tooltip" title="Edit"></span></a></li>
+                <li><a ng-href="#/edit/{{user.id}}"><span class="fa fa-pencil with-tooltip" title="Edit"></span></a></li>
                 <li><a href="javascript:void(0)" ng-click="userListCtrl.delete(user)"><span class="fa fa-times with-tooltip" title="Delete"></span></a></li>
               </ul>
             </td>

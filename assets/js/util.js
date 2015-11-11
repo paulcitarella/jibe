@@ -1,6 +1,30 @@
 module.exports = {
+  /* Configures default themes for the spinner plugin
+   * E.g. app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
+   */
   configSpinnerThemes: function (usSpinnerConfigProvider) {
-    usSpinnerConfigProvider.setTheme('small', {lines: 11, radius: 4, width: 2, length: 4});
+    usSpinnerConfigProvider.setTheme('small', {lines: 12, radius: 4, width: 2, length: 4});
+    usSpinnerConfigProvider.setTheme('medium', {lines: 12, radius: 6, width: 3, length: 6});
+    usSpinnerConfigProvider.setTheme('large', {lines: 12, radius: 8, width: 4, length: 8});
+  },
+
+  /* Introduces delay into all angular http requests for dev purposes
+   * E.g. $httpProvider.interceptors.push(["$q", "$timeout", util.configHttpDelay]);
+   */
+  configHttpDelay: function ($q, $timeout) {
+    return {
+      'response': function(response) {
+        return $q(function(resolve, reject) {
+          if (response.config.url && response.config.url.indexOf('/templates') != -1) {
+            resolve(response);
+          } else {
+            $timeout(function() {
+              resolve(response);
+            }, 1000);
+          }
+        });
+      }
+    };
   },
 
   paginator: function(totalCount, pageSize) {
