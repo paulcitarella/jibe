@@ -6,7 +6,6 @@ module.exports = function($scope, $window, userService) {
   self.loading = 0;
   self.paging = 0;
   self.users = userService.users;
-  // self.userService = userService;
   self.paginator = userService.paginator;
   $scope.paginator = userService.paginator; // Required to watch service variables
   self.toPageNum = 1;
