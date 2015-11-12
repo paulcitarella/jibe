@@ -21,9 +21,6 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
     .otherwise({
         redirectTo: '/'
     });
-
-    // DEBUG: Introduce delay into all http calls
-    $httpProvider.interceptors.push(["$q", "$timeout", util.configHttpDelay]);
   }
 ]);
 

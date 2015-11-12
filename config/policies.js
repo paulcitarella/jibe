@@ -54,7 +54,6 @@ module.exports.policies = {
     ]),
     create: open,
     me: open,
-    update: false,
     populate: false,
     add: false,
     remove: false

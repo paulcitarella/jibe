@@ -19,6 +19,17 @@ module.exports = function($http, $q, data, dataTotalCount) {
       });
     },
 
+    update: function(user) {
+      return $q(function(resolve, reject) {
+        $http.put('/users/' + user.id, user)
+          .then(function(response) {
+            var index = _.findIndex(userService.users, function(it) { return it.id === user.id; });
+            if (index > -1) userService.users[index] = response.data;
+            resolve(response.data);
+          }).catch(reject);
+      });
+    },
+
     delete: function(user) {
       _.remove(userService.users, function(it) { return it.id === user.id; });
 

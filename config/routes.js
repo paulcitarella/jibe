@@ -37,6 +37,7 @@ module.exports.routes = {
   'get /users': {
     controller: 'UserController',
     action: 'find',
+    sort: 'id DESC',
     locals: {
       pageId: 'users',
       ngApp: 'users'
@@ -46,6 +47,7 @@ module.exports.routes = {
   'get /tasks': {
     controller: 'TaskController',
     action: 'find',
+    sort: 'id ASC',
     locals: {
       pageId: 'tasks',
       ngApp: 'tasks',
