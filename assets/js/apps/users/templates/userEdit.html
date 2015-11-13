@@ -13,22 +13,22 @@
 
     <div class="row admin-edit" ng-show="!userEditCtrl.initializing">
       <div class="col-md-6">
-        <form id="user-form" name="userForm" ng-submit="userForm.$dirty && userForm.$valid && userEditCtrl.save()" novalidate autocomplete="off">
+        <form id="user-form" name="userForm" ng-submit="userForm.$dirty && userForm.$valid && userEditCtrl.update()" novalidate autocomplete="off">
           <div class="form-group has-feedback">
+            <label for="firstname">First Name</label>
             <input class="form-control" type="text" id="firstname" name="firstname" ng-model="userEditCtrl.user.firstname" value="" placeholder="First Name" required />
             <span class="form-control-feedback" ng-show="(userForm.firstname.$dirty || userForm.$submitted) && userForm.firstname.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide your first name"><span class="fa fa-question"></span></a></span>
-            <label for="firstname">First Name</label>
           </div>
           <div class="form-group has-feedback">
+            <label for="lastname">Last Name</label>
             <input class="form-control" type="text" id="lastname" name="lastname" ng-model="userEditCtrl.user.lastname" value="" placeholder="Last Name" required />
             <span class="form-control-feedback" ng-show="(userForm.lastname.$dirty || userForm.$submitted) && userForm.lastname.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide your last name"><span class="fa fa-question"></span></a></span>
-            <label for="lastname">Last Name</label>
           </div>
           <div class="form-group has-feedback">
+            <label for="lastname">Email</label>
             <input class="form-control" type="email" id="email" name="email" ng-model="userEditCtrl.user.email" value="" placeholder="Email" required ng-change="userForm.email.$setValidity('server', true)" />
             <span class="form-control-feedback" ng-show="(userForm.email.$dirty || userForm.$submitted) && userForm.email.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide an email address"><span class="fa fa-question"></span></a></span>
             <span class="form-control-feedback" ng-show="(userForm.email.$dirty || userForm.$submitted) && userForm.email.$error.email" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide a valid email address"><span class="fa fa-question"></span></a></span>
-            <label for="lastname">Email</label>
             <span class="help-block" ng-show="(userForm.email.$dirty || userForm.$submitted) && userForm.email.$error.server">Sorry, looks like an account already exists for this email address.</span>
           </div>
 

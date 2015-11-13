@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-module.exports = function($routeParams, userService) {
+module.exports = function($scope, $routeParams, userService) {
   var self = this;
   self.error = false;
   self.loading = 0;
@@ -21,7 +21,7 @@ module.exports = function($routeParams, userService) {
       _.any(self.user.roles, function(role) { return role.name === 'Administrator'; });
   };
 
-  self.save = function() {
+  self.update = function() {
     self.error = false;
     self.msg = null;
     self.loading++;
@@ -31,7 +31,15 @@ module.exports = function($routeParams, userService) {
         self.msg = 'Changes saved.';
       })
       .catch(function(err) {
-        self.error = true;
+        if (err.error === 'E_VALIDATION') {
+          if (err.invalidAttributes.email) {
+            $scope.userForm.email.$setValidity('server', false);
+          } else {
+            self.error = true;
+          }
+        } else {
+          self.error = true;
+        }
 
       }).finally(function() {
         self.loading--;

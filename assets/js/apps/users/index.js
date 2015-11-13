@@ -32,5 +32,5 @@ app.run(['$templateCache', require('./templates')]);
 
 // Controllers
 app.controller('UserListCtrl', ['$scope', '$window', 'userService', require('./controllers/userListCtrl')]);
-app.controller('UserEditCtrl', ['$routeParams', 'userService', require('./controllers/userEditCtrl')]);
+app.controller('UserEditCtrl', ['$scope', '$routeParams', 'userService', require('./controllers/userEditCtrl')]);
 app.factory('userService', ['$http', '$q', 'data', 'dataTotalCount', require('./services/userService')]);

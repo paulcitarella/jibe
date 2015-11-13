@@ -15,7 +15,10 @@ module.exports = function($http, $q, data, dataTotalCount) {
         $http.get('/users/' + id)
           .then(function(response) {
             resolve(response.data);
-          }).catch(reject);
+
+          }).catch(function(response) {
+            reject(response.data);
+          });
       });
     },
 
@@ -26,7 +29,10 @@ module.exports = function($http, $q, data, dataTotalCount) {
             var index = _.findIndex(userService.users, function(it) { return it.id === user.id; });
             if (index > -1) userService.users[index] = response.data;
             resolve(response.data);
-          }).catch(reject);
+
+          }).catch(function(response) {
+            reject(response.data);
+          });
       });
     },
 
@@ -37,7 +43,10 @@ module.exports = function($http, $q, data, dataTotalCount) {
         $http.delete('/users/' + user.id)
           .then(function(response) {
             resolve(response.data);
-          }).catch(reject);
+
+          }).catch(function(response) {
+            reject(response.data);
+          });
       });
     },
 
@@ -51,7 +60,10 @@ module.exports = function($http, $q, data, dataTotalCount) {
             paginator.currentPage++;
             angular.copy(response.data, userService.users);
             resolve(response.data);
-          }).catch(reject);
+
+          }).catch(function(response) {
+            reject(response.data);
+          });
       });
     },
 
@@ -65,7 +77,10 @@ module.exports = function($http, $q, data, dataTotalCount) {
             paginator.currentPage--;
             angular.copy(response.data, userService.users);
             resolve(response.data);
-          }).catch(reject);
+
+          }).catch(function(response) {
+            reject(response.data);
+          });
       });
     },
 
@@ -79,7 +94,10 @@ module.exports = function($http, $q, data, dataTotalCount) {
             paginator.currentPage = toPageNum;
             angular.copy(response.data, userService.users);
             resolve(response.data);
-          }).catch(reject);
+
+          }).catch(function(response) {
+            reject(response.data);
+          });
       });
 
     },
