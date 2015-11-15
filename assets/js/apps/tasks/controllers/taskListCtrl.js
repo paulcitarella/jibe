@@ -1,42 +1,42 @@
 var _ = require('lodash');
+var util = require('../../../util');
 
-module.exports = function($scope, $http, user, tasks) {
-  $scope.loading = 0;
-  $scope.user = user;
-  $scope.tasks = tasks || [];
+module.exports = function($http, Flash, user, tasks) {
+  var self = this;
+  self.loading = 0;
+  self.user = user;
+  self.tasks = tasks || [];
 
-  $scope.addTask = function() {
-    if ($scope.newTask) {
+  self.addTask = function() {
+    if (self.newTask) {
       var task = {
-        title: $scope.newTask
+        title: self.newTask
       };
-      $scope.tasks.push(task);
-      $scope.newTask = null;
-      $scope.error = false;
-      $scope.loading++;
+      self.tasks.push(task);
+      self.newTask = null;
+      self.loading++;
 
       $http.post('/tasks', task).then(function(response) {
         _.merge(task, response.data);
 
       }).catch(function(response) {
-        $scope.error = true;
+        util.flashError(Flash);
 
       }).finally(function() {
-        $scope.loading--;
+        self.loading--;
       });
     }
   };
 
-  $scope.deleteTask  = function(task) {
-    $scope.tasks.splice($scope.tasks.indexOf(task), 1);
-    $scope.error = false;
-    $scope.loading++;
+  self.deleteTask  = function(task) {
+    self.tasks.splice(self.tasks.indexOf(task), 1);
+    self.loading++;
 
     $http.delete('/tasks/' + task.id, task).catch(function(response) {
-      $scope.error = true;
+      util.flashError(Flash);
 
     }).finally(function() {
-      $scope.loading--;
+      self.loading--;
     });
   };
 };

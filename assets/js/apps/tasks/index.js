@@ -1,16 +1,19 @@
 var angular = require('angular');
 var angularRoute = require('angular-route');
+var angularAnimate = require('angular-animate');
 var spinner = require('angular-spinner');
+var flash = require('angular-flash-alert');
 var util = require('../../util');
-var app = angular.module('tasks', [angularRoute, spinner.name]);
+var app = angular.module('tasks', [angularRoute, angularAnimate, 'angularSpinner', 'flash']);
 
 // Routes
-app.config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
+app.config(['$routeProvider',
+  function($routeProvider) {
     $routeProvider
     .when('/', {
       templateUrl: '/js/apps/tasks/templates/taskList.html',
-      controller: 'TaskListCtrl'
+      controller: 'TaskListCtrl',
+      controllerAs: 'taskListCtrl'
     })
     .otherwise({
         redirectTo: '/'
@@ -25,4 +28,4 @@ app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
 app.run(['$templateCache', require('./templates')]);
 
 // Controllers
-app.controller('TaskListCtrl', ['$scope', '$http', 'user', 'tasks', require('./controllers/taskListCtrl')]);
+app.controller('TaskListCtrl', ['$http', 'Flash', 'user', 'tasks', require('./controllers/taskListCtrl')]);

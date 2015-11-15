@@ -7,8 +7,8 @@ var util = require('../../util');
 var app = angular.module('users', [angularRoute, angularAnimate, 'angularSpinner', 'flash']);
 
 // Routes
-app.config(['$routeProvider', '$locationProvider', '$httpProvider',
-  function($routeProvider, $locationProvider, $httpProvider) {
+app.config(['$routeProvider',
+  function($routeProvider) {
     $routeProvider
     .when('/', {
       templateUrl: '/js/apps/users/templates/userList.html',
