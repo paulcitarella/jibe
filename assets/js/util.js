@@ -53,5 +53,13 @@ module.exports = {
     };
 
     return paginator;
+  },
+
+  flashError: function(Flash) {
+    Flash.create('danger', '<strong>Oops!</strong><br/>Looks like something went wrong. Please try again later.');
+  },
+
+  flashSuccess: function(Flash, msg) {
+    Flash.create('success', '<strong>Success</strong><br/>' + msg);
   }
 };

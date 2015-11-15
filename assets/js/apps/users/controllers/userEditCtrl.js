@@ -1,17 +1,16 @@
 var _ = require('lodash');
+var util = require('../../../util');
 
-module.exports = function($scope, $routeParams, userService) {
+module.exports = function($scope, $routeParams, Flash, userService) {
   var self = this;
-  self.error = false;
   self.loading = 0;
   self.initializing = 1;
   self.user = null;
-  self.msg = null;
 
   userService.get(parseInt($routeParams.id)).then(function(user) {
     self.user = user;
   }).catch(function(error) {
-    self.error = true;
+    util.flashError(Flash);
   }).finally(function() {
     self.initializing--;
   });
@@ -21,24 +20,22 @@ module.exports = function($scope, $routeParams, userService) {
       _.any(self.user.roles, function(role) { return role.name === 'Administrator'; });
   };
 
-  self.update = function() {
-    self.error = false;
-    self.msg = null;
+  self.save = function() {
     self.loading++;
 
     userService.update(self.user)
       .then(function(user) {
-        self.msg = 'Changes saved.';
+        util.flashSuccess(Flash, 'Changes have been saved.');
       })
       .catch(function(err) {
         if (err.error === 'E_VALIDATION') {
           if (err.invalidAttributes.email) {
             $scope.userForm.email.$setValidity('server', false);
           } else {
-            self.error = true;
+            util.flashError(Flash);
           }
         } else {
-          self.error = true;
+          util.flashError(Flash);
         }
 
       }).finally(function() {

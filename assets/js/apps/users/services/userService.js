@@ -22,6 +22,20 @@ module.exports = function($http, $q, data, dataTotalCount) {
       });
     },
 
+    create: function(user) {
+      return $q(function(resolve, reject) {
+        $http.post('/users', user)
+          .then(function(response) {
+            userService.users.unshift(response.data);
+            paginator.totalCount++;
+            resolve(response.data);
+
+          }).catch(function(response) {
+            reject(response.data);
+          });
+      });
+    },
+
     update: function(user) {
       return $q(function(resolve, reject) {
         $http.put('/users/' + user.id, user)
@@ -42,6 +56,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
       return $q(function(resolve, reject) {
         $http.delete('/users/' + user.id)
           .then(function(response) {
+            paginator.totalCount--;
             resolve(response.data);
 
           }).catch(function(response) {

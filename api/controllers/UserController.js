@@ -5,7 +5,7 @@
  */
 
 module.exports = {
-  create: function (req, res, next) {
+  register: function (req, res, next) {
     sails.services.passport.protocols.local.register(req.body, function (err, user) {
       if (err) return next(err);
 
@@ -15,6 +15,14 @@ module.exports = {
         req.session.authenticated = true;
         res.ok(user);
       });
+    });
+  },
+
+  create: function (req, res, next) {
+    sails.services.passport.protocols.local.register(req.body, function (err, user) {
+      if (err) return next(err);
+
+      res.ok(user);
     });
   },
 

@@ -52,7 +52,7 @@ module.exports.policies = {
       'isAdmin',
       'populateUser'
     ]),
-    create: open,
+    register: open,
     me: open,
     populate: false,
     add: false,

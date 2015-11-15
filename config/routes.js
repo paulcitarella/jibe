@@ -56,7 +56,7 @@ module.exports.routes = {
   },
 
   // sails-auth generated routes
-  'post /register': 'UserController.create',
+  'post /register': 'UserController.register',
   'get /logout': 'AuthController.logout',
 
   'post /auth/local': 'AuthController.callback',

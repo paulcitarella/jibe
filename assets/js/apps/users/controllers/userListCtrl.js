@@ -1,8 +1,8 @@
 var _ = require('lodash');
+var util = require('../../../util');
 
-module.exports = function($scope, $window, userService) {
+module.exports = function($scope, $window, Flash, userService) {
   var self = this;
-  self.error = false;
   self.loading = 0;
   self.paging = 0;
   self.users = userService.users;
@@ -16,11 +16,13 @@ module.exports = function($scope, $window, userService) {
 
   self.delete = function(user) {
     if ($window.confirm('Are you sure you want to delete this user? This operation can not be undone.')) {
-      self.error = false;
       self.loading++;
 
-      userService.delete(user).catch(function(err) {
-        self.error = true;
+      userService.delete(user).then(function() {
+        util.flashSuccess(Flash, 'User has been deleted.');
+      })
+      .catch(function(err) {
+        util.flashError(Flash);
 
       }).finally(function() {
         self.loading--;
@@ -29,11 +31,10 @@ module.exports = function($scope, $window, userService) {
   };
 
   self.nextPage = function() {
-    self.error = false;
     self.paging++;
 
     userService.nextPage().catch(function(err) {
-        self.error = true;
+        util.flashError(Flash);
 
       }).finally(function() {
         self.paging--;
@@ -41,11 +42,10 @@ module.exports = function($scope, $window, userService) {
   };
 
   self.previousPage = function() {
-    self.error = false;
     self.paging++;
 
     userService.previousPage().catch(function(err) {
-        self.error = true;
+        util.flashError(Flash);
 
       }).finally(function() {
         self.paging--;
@@ -53,11 +53,10 @@ module.exports = function($scope, $window, userService) {
   };
 
   self.toPage = _.debounce(function() {
-    self.error = false;
     self.paging++;
 
     userService.toPage(self.toPageNum).catch(function(err) {
-        self.error = true;
+        util.flashError(Flash);
 
       }).finally(function() {
         self.paging--;

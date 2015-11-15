@@ -2,39 +2,44 @@
   <div class="col-md-9">
 
     <div class="page-header">
-      <h1 ng-show="!userEditCtrl.initializing">{{userEditCtrl.user.firstname}} {{userEditCtrl.user.lastname}}&nbsp;<small ng-if="userEditCtrl.isAdmin()">(Administrator)</small></h1>
-      <h1 ng-show="userEditCtrl.initializing" class="text-loading">Loading...</h1>
+      <h1 ng-show="userCtrl.initializing" class="text-loading">Loading...</h1>
+      <h1 ng-show="!userCtrl.initializing && !userCtrl.user.id && !(userCtrl.user.firstname || userCtrl.user.lastname)" class="text-loading">New User</h1>
+      <h1 ng-show="!userCtrl.initializing && (userCtrl.user.id || userCtrl.user.firstname || userCtrl.user.lastname)">{{userCtrl.user.firstname}} {{userCtrl.user.lastname}}&nbsp;<small ng-if="userCtrl.isAdmin()">(Administrator)</small></h1>
       <ul class="header-nav">
         <li><a href="#/" class="with-tooltip" title="Back" data-container=".row"><span class="fa fa-arrow-left"></span></a></li>
       </ul>
-      <span id="spinner" us-spinner="{color: '#aaa'}" spinner-theme="small" ng-show="userEditCtrl.initializing || userEditCtrl.loading"></span>
+      <span id="spinner" us-spinner="{color: '#aaa'}" spinner-theme="small" ng-show="userCtrl.initializing || userCtrl.loading"></span>
     </div>
-    <div class="alert alert-danger" ng-show="userEditCtrl.error">Sorry, looks like something went wrong. Please try again later.</div>
 
-    <div class="row admin-edit" ng-show="!userEditCtrl.initializing">
+    <div class="row admin-edit" ng-show="!userCtrl.initializing">
       <div class="col-md-6">
-        <form id="user-form" name="userForm" ng-submit="userForm.$dirty && userForm.$valid && userEditCtrl.update()" novalidate autocomplete="off">
+        <form id="user-form" name="userForm" ng-submit="userForm.$dirty && userForm.$valid && userCtrl.save()" novalidate autocomplete="off">
           <div class="form-group has-feedback">
             <label for="firstname">First Name</label>
-            <input class="form-control" type="text" id="firstname" name="firstname" ng-model="userEditCtrl.user.firstname" value="" placeholder="First Name" required />
+            <input class="form-control" type="text" id="firstname" name="firstname" ng-model="userCtrl.user.firstname" value="" required />
             <span class="form-control-feedback" ng-show="(userForm.firstname.$dirty || userForm.$submitted) && userForm.firstname.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide your first name"><span class="fa fa-question"></span></a></span>
           </div>
           <div class="form-group has-feedback">
             <label for="lastname">Last Name</label>
-            <input class="form-control" type="text" id="lastname" name="lastname" ng-model="userEditCtrl.user.lastname" value="" placeholder="Last Name" required />
+            <input class="form-control" type="text" id="lastname" name="lastname" ng-model="userCtrl.user.lastname" value="" required />
             <span class="form-control-feedback" ng-show="(userForm.lastname.$dirty || userForm.$submitted) && userForm.lastname.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide your last name"><span class="fa fa-question"></span></a></span>
           </div>
           <div class="form-group has-feedback">
-            <label for="lastname">Email</label>
-            <input class="form-control" type="email" id="email" name="email" ng-model="userEditCtrl.user.email" value="" placeholder="Email" required ng-change="userForm.email.$setValidity('server', true)" />
+            <label for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email" ng-model="userCtrl.user.email" value="" required ng-change="userForm.email.$setValidity('server', true)" />
             <span class="form-control-feedback" ng-show="(userForm.email.$dirty || userForm.$submitted) && userForm.email.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide an email address"><span class="fa fa-question"></span></a></span>
             <span class="form-control-feedback" ng-show="(userForm.email.$dirty || userForm.$submitted) && userForm.email.$error.email" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide a valid email address"><span class="fa fa-question"></span></a></span>
             <span class="help-block" ng-show="(userForm.email.$dirty || userForm.$submitted) && userForm.email.$error.server">Sorry, looks like an account already exists for this email address.</span>
           </div>
+          <div class="form-group has-feedback" ng-if="!userCtrl.user.id">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password" ng-model="userCtrl.user.password" value="" required ng-minlength="8" />
+            <span class="form-control-feedback" ng-show="(userForm.password.$dirty || userForm.$submitted) && userForm.password.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide a password"><span class="fa fa-question"></span></a></span>
+            <span class="form-control-feedback" ng-show="(userForm.password.$dirty || userForm.$submitted) && userForm.password.$error.minlength" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Passwords must be at least 8 characters"><span class="fa fa-question"></span></a></span>
+          </div>
 
           <p>
-            <button type="submit" class="btn btn-primary with-spinner" ng-class="{spinning:userEditCtrl.loading}" ng-disabled="userEditCtrl.loading || (userForm.$dirty && userForm.$invalid)">Save<span us-spinner="{color:'#fff'}" spinner-theme="small" spinner-on="userEditCtrl.loading"></span></button>
-            <span class="text-success server-msg" ng-show="userEditCtrl.msg">{{userEditCtrl.msg}}</span>
+            <button type="submit" class="btn btn-primary with-spinner" ng-class="{spinning:userCtrl.loading}" ng-disabled="userCtrl.loading || (userForm.$dirty && userForm.$invalid)">Save<span us-spinner="{color:'#fff'}" spinner-theme="small" spinner-on="userCtrl.loading"></span></button>
           </p>
         </form>
       </div>

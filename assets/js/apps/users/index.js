@@ -1,8 +1,10 @@
 var angular = require('angular');
 var angularRoute = require('angular-route');
+var angularAnimate = require('angular-animate');
 var spinner = require('angular-spinner');
+var flash = require('angular-flash-alert');
 var util = require('../../util');
-var app = angular.module('users', [angularRoute, spinner.name]);
+var app = angular.module('users', [angularRoute, angularAnimate, 'angularSpinner', 'flash']);
 
 // Routes
 app.config(['$routeProvider', '$locationProvider', '$httpProvider',
@@ -16,7 +18,12 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
     .when('/edit/:id', {
       templateUrl: '/js/apps/users/templates/userEdit.html',
       controller: 'UserEditCtrl',
-      controllerAs: 'userEditCtrl'
+      controllerAs: 'userCtrl'
+    })
+    .when('/create', {
+      templateUrl: '/js/apps/users/templates/userEdit.html',
+      controller: 'UserCreateCtrl',
+      controllerAs: 'userCtrl'
     })
     .otherwise({
         redirectTo: '/'
@@ -31,6 +38,7 @@ app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
 app.run(['$templateCache', require('./templates')]);
 
 // Controllers
-app.controller('UserListCtrl', ['$scope', '$window', 'userService', require('./controllers/userListCtrl')]);
-app.controller('UserEditCtrl', ['$scope', '$routeParams', 'userService', require('./controllers/userEditCtrl')]);
+app.controller('UserListCtrl', ['$scope', '$window', 'Flash', 'userService', require('./controllers/userListCtrl')]);
+app.controller('UserEditCtrl', ['$scope', '$routeParams', 'Flash', 'userService', require('./controllers/userEditCtrl')]);
+app.controller('UserCreateCtrl', ['$scope', '$location', 'Flash', 'userService', require('./controllers/userCreateCtrl')]);
 app.factory('userService', ['$http', '$q', 'data', 'dataTotalCount', require('./services/userService')]);
