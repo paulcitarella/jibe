@@ -1,25 +1,25 @@
-<form id="register-form" name="registerForm" ng-submit="registerForm.$valid && register()" novalidate autocomplete="off">
+<form id="register-form" name="registerForm" ng-submit="registerForm.$valid && loginCtrl.register()" novalidate autocomplete="off">
   <div class="form-group has-feedback">
-    <input class="form-control" type="text" ng-model="firstname" name="firstname" value="" placeholder="First Name" required autofocus />
+    <input class="form-control" type="text" ng-model="loginCtrl.firstname" name="firstname" value="" placeholder="First Name" required autofocus />
     <span class="form-control-feedback" ng-show="(registerForm.firstname.$dirty || registerForm.$submitted) && registerForm.firstname.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide your first name"><span class="fa fa-question"></span></a></span>
   </div>
   <div class="form-group has-feedback">
-    <input class="form-control" type="text" ng-model="lastname" name="lastname" value="" placeholder="Last Name" required />
+    <input class="form-control" type="text" ng-model="loginCtrl.lastname" name="lastname" value="" placeholder="Last Name" required />
     <span class="form-control-feedback" ng-show="(registerForm.lastname.$dirty || registerForm.$submitted) && registerForm.lastname.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide your last name"><span class="fa fa-question"></span></a></span>
   </div>
   <div class="form-group has-feedback">
-    <input class="form-control" type="email" ng-model="email" name="email" value="" placeholder="Email" required ng-change="registerForm.email.$setValidity('server', true)" />
+    <input class="form-control" type="email" ng-model="loginCtrl.email" name="email" value="" placeholder="Email" required ng-change="registerForm.email.$setValidity('server', true)" />
     <span class="form-control-feedback" ng-show="(registerForm.email.$dirty || registerForm.$submitted) && registerForm.email.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide an email address"><span class="fa fa-question"></span></a></span>
     <span class="form-control-feedback" ng-show="(registerForm.email.$dirty || registerForm.$submitted) && registerForm.email.$error.email" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide a valid email address"><span class="fa fa-question"></span></a></span>
     <span class="help-block" ng-show="(registerForm.email.$dirty || registerForm.$submitted) && registerForm.email.$error.server">Sorry, looks like an account already exists for this email address.</span>
   </div>
   <div class="form-group has-feedback">
-    <input class="form-control" type="password" ng-model="password" name="password" value="" placeholder="Password" required ng-minlength="8" />
+    <input class="form-control" type="password" ng-model="loginCtrl.password" name="password" value="" placeholder="Password" required ng-minlength="8" />
     <span class="form-control-feedback" ng-show="(registerForm.password.$dirty || registerForm.$submitted) && registerForm.password.$error.required" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Please provide a password"><span class="fa fa-question"></span></a></span>
     <span class="form-control-feedback" ng-show="(registerForm.password.$dirty || registerForm.$submitted) && registerForm.password.$error.minlength" aria-hidden="true"><a href="javascript:void(0)" class="with-tooltip" data-container="body" title="Passwords must be at least 8 characters"><span class="fa fa-question"></span></a></span>
   </div>
 
   <div class="error-msg" ng-show="error">Sorry, looks like something went wrong. Please try again later.</div>
 
-  <p><button type="submit" class="btn btn-lg btn-primary with-spinner" ng-class="{spinning:loading}" ng-disabled="loading || (registerForm.$dirty && registerForm.$invalid)">Sign Up<span us-spinner="{color:'#fff'}" spinner-theme="small" spinner-on="loading"></span></button></p>
+  <p><button type="submit" class="btn btn-lg btn-primary with-spinner" ng-class="{spinning:loginCtrl.loading}" ng-disabled="loginCtrl.loading || (registerForm.$dirty && registerForm.$invalid)">Sign Up<span us-spinner="{color:'#fff'}" spinner-theme="small" spinner-on="loginCtrl.loading"></span></button></p>
 </form>

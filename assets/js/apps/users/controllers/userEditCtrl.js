@@ -29,7 +29,7 @@ module.exports = function($scope, $routeParams, Flash, userService) {
       })
       .catch(function(err) {
         if (err.error === 'E_VALIDATION') {
-          if (err.invalidAttributes.email) {
+          if (err.invalidAttributes.email || err.invalidAttributes.username) {
             $scope.userForm.email.$setValidity('server', false);
           } else {
             util.flashError(Flash);

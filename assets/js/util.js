@@ -8,21 +8,35 @@ module.exports = {
     usSpinnerConfigProvider.setTheme('large', {lines: 12, radius: 8, width: 4, length: 8});
   },
 
-  /* Introduces delay into all angular http requests for dev purposes
-   * E.g. $httpProvider.interceptors.push(["$q", "$timeout", util.configHttpDelay]);
+  /* Introduces delay into all angular http requests for debugging purposes
+   * Example:
+   * app.config(['$httpProvider', function($httpProvider) {
+   *   $httpProvider.interceptors.push(["$q", "$timeout", util.configHttpDelay]);
+   * }]);
    */
   configHttpDelay: function ($q, $timeout) {
     return {
-      'response': function(response) {
+      response: function (response) {
         return $q(function(resolve, reject) {
-          if (response.config.url && response.config.url.indexOf('/templates') != -1) {
+          if (response.config.url && response.config.url.indexOf('/templates') >= 0) {
             resolve(response);
           } else {
             $timeout(function() {
               resolve(response);
             }, 1000);
           }
-        });
+       });
+      },
+      responseError: function (response) {
+        return $q(function(resolve, reject) {
+          if (response.config.url && response.config.url.indexOf('/templates') >= 0) {
+            reject(response);
+          } else {
+            $timeout(function() {
+              reject(response);
+            }, 1000);
+          }
+       });
       }
     };
   },

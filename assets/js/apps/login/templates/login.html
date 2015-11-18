@@ -1,13 +1,13 @@
-<form id="login-form" name="loginForm" ng-submit="loginForm.$valid && login()" novalidate autocomplete="off">
+<form id="login-form" name="loginForm" ng-submit="loginForm.$valid && loginCtrl.login()" novalidate autocomplete="off">
   <div class="form-group">
-    <input class="form-control" type="email" ng-model="email" name="email" value="" placeholder="Email" autocomplete="off" required autofocus />
+    <input class="form-control" type="email" ng-model="loginCtrl.email" name="email" value="" placeholder="Email" autocomplete="off" required autofocus />
   </div>
   <div class="form-group">
-    <input class="form-control" type="password" ng-model="password" name="password" value="" placeholder="Password" autocomplete="off" required />
+    <input class="form-control" type="password" ng-model="loginCtrl.password" name="password" value="" placeholder="Password" autocomplete="off" required />
   </div>
 
-  <div class="error-msg" ng-show="invalid">Sorry, looks like those credentials are invalid.</div>
-  <div class="error-msg" ng-show="error">Sorry, looks like something went wrong. Please try again later.</div>
+  <div class="error-msg" ng-show="loginCtrl.invalid">Sorry, looks like those credentials are invalid.</div>
+  <div class="error-msg" ng-show="loginCtrl.error">Sorry, looks like something went wrong. Please try again later.</div>
 
-  <p><button type="submit" class="btn btn-lg btn-primary with-spinner" ng-class="{spinning:loading}" ng-disabled="loading || (loginForm.$dirty && loginForm.$invalid)">Login<span us-spinner="{color:'#fff'}" spinner-theme="small" spinner-on="loading"></span></button></p>
+  <p><button type="submit" class="btn btn-lg btn-primary with-spinner" ng-class="{spinning:loginCtrl.loading}" ng-disabled="loginCtrl.loading || (loginForm.$dirty && loginForm.$invalid)">Login<span us-spinner="{color:'#fff'}" spinner-theme="small" spinner-on="loginCtrl.loading"></span></button></p>
 </form>
