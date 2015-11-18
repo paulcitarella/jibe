@@ -35,8 +35,10 @@ exports.up = function(db, callback) {
 
   }).then(function() {
     return [
-      adb.addForeignKeyAsync('role_users__user_roles', 'role', 'role_users__user_roles_role_fk', { 'role_users': 'id' }),
-      adb.addForeignKeyAsync('role_users__user_roles', 'person', 'role_users__user_roles_person_fk', { 'user_roles': 'id' })
+      adb.addForeignKeyAsync('role_users__user_roles', 'role', 'role_users__user_roles_role_fk',
+        { 'role_users': 'id' }, { onDelete: 'CASCADE' }),
+      adb.addForeignKeyAsync('role_users__user_roles', 'person', 'role_users__user_roles_person_fk',
+        { 'user_roles': 'id' }, { onDelete: 'CASCADE' })
     ];
 
   }).all()

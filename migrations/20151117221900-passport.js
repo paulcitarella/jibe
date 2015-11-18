@@ -32,7 +32,9 @@ exports.up = function(db, callback) {
     updatedAt: 'timestamptz'
 
   }).then(function() {
-      return adb.addForeignKeyAsync('passport', 'person', 'passport_person_fk', { 'user': 'id' });
+      return adb.addForeignKeyAsync('passport', 'person', 'passport_person_fk',
+        { 'user': 'id' }, { onDelete: 'CASCADE' }
+      );
 
   }).finally(callback);
 };

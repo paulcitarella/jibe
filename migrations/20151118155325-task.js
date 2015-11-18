@@ -15,13 +15,15 @@ exports.up = function(db, callback) {
       notNull: true
     },
     owner: {
-      type: 'int'
+      type: 'int',
+      notNull: true
     },
     createdAt: 'timestamptz',
     updatedAt: 'timestamptz'
 
   }).then(function() {
-      return adb.addForeignKeyAsync('task', 'person', 'task_person_fk', { 'owner': 'id' });
+      return adb.addForeignKeyAsync('task', 'person', 'task_person_fk',
+        { 'owner': 'id' }, { onDelete: 'CASCADE' });
 
   }).finally(callback);
 };

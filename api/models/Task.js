@@ -13,7 +13,8 @@ module.exports = {
       notNull: true
     },
     owner: {
-      model: 'user'
+      model: 'user',
+      notNull: true
     }
   },
 
