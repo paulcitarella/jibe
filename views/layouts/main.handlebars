@@ -31,7 +31,7 @@
     {{> userdata}}
   </head>
 
-  <body id="{{pageId}}" ng-app="{{ngApp}}">
+  <body id="{{pageId}}" {{#if ngApp}}ng-app="{{ngApp}}"{{/if}}>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">

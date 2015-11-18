@@ -7,6 +7,6 @@
 var _ = require('lodash');
 
 module.exports = function (user, options) {
-  var isAdmin = user.roles && _.any(user.roles, 'name', 'Administrator');
+  var isAdmin = user && user.roles && _.any(user.roles, 'name', 'Administrator');
   if (isAdmin) return options.fn(this);
 };
