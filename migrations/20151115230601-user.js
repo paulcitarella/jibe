@@ -12,21 +12,21 @@ exports.up = function(db, callback) {
     },
     username: {
       type: 'text',
-      notNull:true,
+      notNull: true,
       unique: true
     },
     email: {
       type: 'text',
-      notNull:true,
+      notNull: true,
       unique: true
     },
     firstname: {
       type: 'text',
-      notNull:true
+      notNull: true
     },
     lastname: {
       type: 'text',
-      notNull:true
+      notNull: true
     },
     createdAt: 'timestamptz',
     updatedAt: 'timestamptz'
