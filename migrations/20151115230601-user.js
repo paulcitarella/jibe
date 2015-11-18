@@ -48,7 +48,7 @@ exports.down = function(db, callback) {
     adb.removeIndexAsync('person', 'person_username')
 
   ]).then(function() {
-    return adb.dropTableAsync('person', {});
+    return adb.dropTableAsync('person');
 
   }).finally(callback);
 };
