@@ -17,6 +17,8 @@ module.exports = {
     }
   },
 
+  /* Static method that creates a query scoped to the given user
+   */
   ownedBy: function(user) {
     return Task.find().where({owner: user.id});
   }

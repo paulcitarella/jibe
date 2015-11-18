@@ -4,40 +4,29 @@ var Promise = require('bluebird');
 
 exports.up = function(db, callback) {
   var adb = Promise.promisifyAll(db);
-  adb.createTableAsync('passport', {
+  adb.createTableAsync('task', {
     id: {
       type: 'int',
       primaryKey: true,
       autoIncrement: true
     },
-    user: {
+    title: {
+      type: 'text',
+      notNull: true
+    },
+    owner: {
       type: 'int'
-    },
-    protocol: {
-      type: 'text'
-    },
-    password: {
-      type: 'text'
-    },
-    provider: {
-      type: 'text'
-    },
-    identifier: {
-      type: 'text'
-    },
-    tokens: {
-      type: 'json'
     },
     createdAt: 'timestamptz',
     updatedAt: 'timestamptz'
 
   }).then(function() {
-      return adb.addForeignKeyAsync('passport', 'person', 'passport_person_fk', { 'user': 'id' });
+      return adb.addForeignKeyAsync('task', 'person', 'task_person_fk', { 'owner': 'id' });
 
   }).finally(callback);
 };
 
 exports.down = function(db, callback) {
   var adb = Promise.promisifyAll(db);
-  adb.dropTableAsync('passport').finally(callback);
+  adb.dropTableAsync('task').finally(callback);
 };
