@@ -54,7 +54,6 @@ module.exports.policies = {
     ]),
     register: open,
     me: open,
-    populate: false,
     add: false,
     remove: false
   },
@@ -69,7 +68,6 @@ module.exports.policies = {
       'filterByOwner'
     ]),
     update: false,
-    populate: false,
     add: false,
     remove: false
   }
