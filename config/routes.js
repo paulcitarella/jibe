@@ -51,13 +51,14 @@ module.exports.routes = {
     sort: 'id DESC'
   },
 
-  'get /tasks': {
+  'get /tasks*': {
     controller: 'TaskController',
-    action: 'find',
+    action: 'list',
     sort: 'id ASC',
     locals: {
       pageId: 'tasks',
       ngApp: 'tasks',
+      base: '/tasks/',
       tasksActive: true
     }
   },

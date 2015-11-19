@@ -8,8 +8,12 @@ var actionUtil = require('sails/lib/hooks/blueprints/actionUtil');
 
 module.exports = {
   list: function (req, res, next) {
-    var query = User.find()
-    .limit( actionUtil.parseLimit(req) )
+    var query = User.find();
+    if (req.options.where) {
+      // Support filterByOwner policy
+      query = query.where(req.options.where);
+    }
+    query.limit( actionUtil.parseLimit(req) )
     .skip( actionUtil.parseSkip(req) )
     .sort( actionUtil.parseSort(req) );
     if (req.options.populateOnly) req.params.populate = req.options.populateOnly;

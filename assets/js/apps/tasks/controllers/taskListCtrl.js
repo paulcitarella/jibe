@@ -16,7 +16,7 @@ module.exports = function($http, Flash, user, tasks) {
       self.newTask = null;
       self.loading++;
 
-      $http.post('/tasks', task).then(function(response) {
+      $http.post('/api/tasks', task).then(function(response) {
         _.merge(task, response.data);
 
       }).catch(function(response) {
@@ -32,7 +32,7 @@ module.exports = function($http, Flash, user, tasks) {
     self.tasks.splice(self.tasks.indexOf(task), 1);
     self.loading++;
 
-    $http.delete('/tasks/' + task.id, task).catch(function(response) {
+    $http.delete('/api/tasks/' + task.id, task).catch(function(response) {
       util.flashError(Flash);
 
     }).finally(function() {

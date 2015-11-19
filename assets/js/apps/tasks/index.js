@@ -20,6 +20,11 @@ app.config(['$routeProvider', function($routeProvider) {
   }
 ]);
 
+// Set HTML5 URL mode
+app.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.html5Mode(true);
+}]);
+
 // Set up spinner themes
 app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
 
@@ -27,4 +32,4 @@ app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
 app.run(['$templateCache', require('./templates')]);
 
 // Controllers
-app.controller('TaskListCtrl', ['$http', 'Flash', 'user', 'tasks', require('./controllers/taskListCtrl')]);
+app.controller('TaskListCtrl', ['$http', 'Flash', 'user', 'data', require('./controllers/taskListCtrl')]);
