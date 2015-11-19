@@ -26,7 +26,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
       return $q(function(resolve, reject) {
         $http.post('/api/users', user)
           .then(function(response) {
-            userService.users.unshift(response.data);
+            if (paginator.currentPage === 1) userService.users.unshift(response.data);
             paginator.totalCount++;
             resolve(response.data);
 
