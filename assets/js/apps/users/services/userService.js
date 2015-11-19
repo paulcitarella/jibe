@@ -12,7 +12,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
       if (user) return $q.resolve(_.merge({}, user)); // Deep copy so unsaved edits aren't cached
 
       return $q(function(resolve, reject) {
-        $http.get('/users/' + id)
+        $http.get('/api/users/' + id)
           .then(function(response) {
             resolve(response.data);
 
@@ -24,7 +24,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
 
     create: function(user) {
       return $q(function(resolve, reject) {
-        $http.post('/users', user)
+        $http.post('/api/users', user)
           .then(function(response) {
             userService.users.unshift(response.data);
             paginator.totalCount++;
@@ -38,7 +38,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
 
     update: function(user) {
       return $q(function(resolve, reject) {
-        $http.put('/users/' + user.id, user)
+        $http.put('/api/users/' + user.id, user)
           .then(function(response) {
             var index = _.findIndex(userService.users, function(it) { return it.id === user.id; });
             if (index > -1) userService.users[index] = response.data;
@@ -54,7 +54,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
       _.remove(userService.users, function(it) { return it.id === user.id; });
 
       return $q(function(resolve, reject) {
-        $http.delete('/users/' + user.id)
+        $http.delete('/api/users/' + user.id)
           .then(function(response) {
             paginator.totalCount--;
             resolve(response.data);
@@ -69,7 +69,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
       if (!paginator.hasNextPage()) return $q.resolve(false);
 
       return $q(function(resolve, reject) {
-        $http.get('/users?skip=' + (paginator.pageSize * paginator.currentPage))
+        $http.get('/api/users?skip=' + (paginator.pageSize * paginator.currentPage))
           .then(function(response) {
             paginator.setCount(response);
             paginator.currentPage++;
@@ -86,7 +86,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
       if (paginator.currentPage <= 1) return $q.resolve(false);
 
       return $q(function(resolve, reject) {
-        $http.get('/users?skip=' + (paginator.pageSize * (paginator.currentPage - 2)))
+        $http.get('/api/users?skip=' + (paginator.pageSize * (paginator.currentPage - 2)))
           .then(function(response) {
             paginator.setCount(response);
             paginator.currentPage--;
@@ -103,7 +103,7 @@ module.exports = function($http, $q, data, dataTotalCount) {
       if (toPageNum < 1 || toPageNum > paginator.getPageCount()) return $q.resolve(false);
 
       return $q(function(resolve, reject) {
-        $http.get('/users?skip=' + (paginator.pageSize * (toPageNum - 1)))
+        $http.get('/api/users?skip=' + (paginator.pageSize * (toPageNum - 1)))
           .then(function(response) {
             paginator.setCount(response);
             paginator.currentPage = toPageNum;

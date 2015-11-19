@@ -6,7 +6,7 @@
       <h1 ng-show="!userCtrl.initializing && !userCtrl.user.id && !(userCtrl.user.firstname || userCtrl.user.lastname)" class="text-loading">New User</h1>
       <h1 ng-show="!userCtrl.initializing && (userCtrl.user.id || userCtrl.user.firstname || userCtrl.user.lastname)">{{userCtrl.user.firstname}} {{userCtrl.user.lastname}}&nbsp;<small ng-if="userCtrl.isAdmin()">(Administrator)</small></h1>
       <ul class="header-nav">
-        <li><a href="#/" class="with-tooltip" title="Back" data-container=".row"><span class="fa fa-arrow-left"></span></a></li>
+        <li><a href="/users" class="with-tooltip" title="Back" data-container=".row"><span class="fa fa-arrow-left"></span></a></li>
       </ul>
       <span id="spinner" us-spinner="{color: '#aaa'}" spinner-theme="small" ng-show="userCtrl.initializing || userCtrl.loading"></span>
     </div>

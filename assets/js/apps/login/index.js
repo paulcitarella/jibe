@@ -5,8 +5,7 @@ var util = require('../../util');
 var app = angular.module('login', [angularRoute, spinner.name]);
 
 // Routes
-app.config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/', {
       templateUrl: '/js/apps/login/templates/index.html',

@@ -15,7 +15,7 @@ module.exports = function($scope, $location, Flash, userService) {
     userService.create(self.user)
       .then(function(user) {
         util.flashSuccess(Flash, 'User has been created.');
-        $location.path('/users');
+        $location.path('/');
       })
       .catch(function(err) {
         if (err.status === 400) {

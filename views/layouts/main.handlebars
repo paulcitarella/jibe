@@ -8,6 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="{{asset '/favicon.ico'}}">
+    {{#if base}}
+    <base href="{{base}}">
+    {{/if}}
 
     <title>{{default title 'Jibe'}}</title>
 
@@ -59,7 +62,7 @@
             <li class="dropdown">
               <a href="javascript:void(0)" data-toggle="dropdown"><span class="fa fa-cog"><span class="fa fa-caret-down"></span></span></a>
               <ul class="dropdown-menu">
-                <li><a href="/users#/">User Admin</a></li>
+                <li><a href="/users">User Admin</a></li>
               </ul>
             </li>
             {{/ifAdmin}}

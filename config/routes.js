@@ -28,20 +28,27 @@ module.exports.routes = {
     locals: {
       layout: 'cover',
       pageId: 'home',
-      ngApp: 'login',
+      ngApp: 'login'
     }
   },
 
   'get /users/me': 'UserController.me',
 
-  'get /users': {
+  'get /users*': {  // '*' for deep angular links with HTML5 url mode
     controller: 'UserController',
-    action: 'find',
+    action: 'list',
     sort: 'id DESC',
     locals: {
       pageId: 'users',
-      ngApp: 'users'
+      ngApp: 'users',
+      base: '/users/'
     }
+  },
+
+  'get /api/users': {
+    controller: 'UserController',
+    action: 'find',
+    sort: 'id DESC'
   },
 
   'get /tasks': {
@@ -65,5 +72,4 @@ module.exports.routes = {
   'get /auth/:provider': 'AuthController.provider',
   'get /auth/:provider/callback': 'AuthController.callback',
   'get /auth/:provider/:action': 'AuthController.callback'
-
 };

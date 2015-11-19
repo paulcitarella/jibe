@@ -7,8 +7,7 @@ var util = require('../../util');
 var app = angular.module('users', [angularRoute, angularAnimate, 'angularSpinner', 'flash']);
 
 // Routes
-app.config(['$routeProvider',
-  function($routeProvider) {
+app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/', {
       templateUrl: '/js/apps/users/templates/userList.html',
@@ -30,6 +29,11 @@ app.config(['$routeProvider',
     });
   }
 ]);
+
+// Set HTML5 URL mode
+app.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.html5Mode(true);
+}]);
 
 // Set up spinner themes
 app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);

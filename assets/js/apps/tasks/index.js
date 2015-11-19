@@ -7,8 +7,7 @@ var util = require('../../util');
 var app = angular.module('tasks', [angularRoute, angularAnimate, 'angularSpinner', 'flash']);
 
 // Routes
-app.config(['$routeProvider',
-  function($routeProvider) {
+app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/', {
       templateUrl: '/js/apps/tasks/templates/taskList.html',
