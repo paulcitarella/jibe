@@ -1,2 +1,5 @@
-<p><a href="{{ loginCtrl.user ? '/tasks' : '#/login'}}" class="btn btn-lg btn-primary">Login</a></p>
-<p id="register" ng-if="!loginCtrl.user"><a href="#/register" >No account?</a></p>
+<p>
+  <a ng-if="loginCtrl.user" href="/tasks" target="_self" class="btn btn-lg btn-primary">Login</a>
+  <a ng-if="!loginCtrl.user" href="/login" class="btn btn-lg btn-primary">Login</a>
+</p>
+<p id="register" ng-if="!loginCtrl.user"><a href="/register">No account?</a></p>

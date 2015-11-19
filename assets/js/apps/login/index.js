@@ -28,6 +28,11 @@ app.config(['$routeProvider', function($routeProvider) {
   }
 ]);
 
+// Set HTML5 URL mode
+app.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.html5Mode(true);
+}]);
+
 // Set up spinner themes
 app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
 

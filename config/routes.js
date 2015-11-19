@@ -28,13 +28,14 @@ module.exports.routes = {
     locals: {
       layout: 'cover',
       pageId: 'home',
-      ngApp: 'login'
+      ngApp: 'login',
+      base: '/'
     }
   },
 
   'get /users/me': 'UserController.me',
 
-  'get /users*': {  // '*' for deep angular links with HTML5 url mode
+  'get /users': {
     controller: 'UserController',
     action: 'list',
     sort: 'id DESC',
@@ -51,7 +52,7 @@ module.exports.routes = {
     sort: 'id DESC'
   },
 
-  'get /tasks*': {
+  'get /tasks': {
     controller: 'TaskController',
     action: 'list',
     sort: 'id ASC',
@@ -74,3 +75,8 @@ module.exports.routes = {
   'get /auth/:provider/callback': 'AuthController.callback',
   'get /auth/:provider/:action': 'AuthController.callback'
 };
+
+// Routes for deep angular links with HTML5 url mode
+exports.routes['get /login'] = exports.routes['/'];
+exports.routes['get /register'] = exports.routes['/'];
+exports.routes['get /users/*'] = exports.routes['get /users'];
