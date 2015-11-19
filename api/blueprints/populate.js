@@ -2,7 +2,7 @@
  * Overridden populate bluprint
  *
  * Adds any criteria found in req.options.where to the find query.
- * Useful in scoping the destroy action to a given user's instances.
+ * Useful in scoping the populate action to a given user's instances.
  */
 
 var actionUtil = require('sails/lib/hooks/blueprints/actionUtil');

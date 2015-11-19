@@ -53,9 +53,7 @@ module.exports.policies = {
       'populateUser'
     ]),
     register: open,
-    me: open,
-    add: false,
-    remove: false
+    me: open
   },
 
   HomeController: {
@@ -66,10 +64,7 @@ module.exports.policies = {
     '*': _.flatten([
       loggedIn,
       'filterByOwner'
-    ]),
-    update: false,
-    add: false,
-    remove: false
+    ])
   }
 
   /***************************************************************************
