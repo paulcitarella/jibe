@@ -44,9 +44,14 @@
     "sails-postgresql": "~0.10.16",
     "socket.io-redis": "~0.1.4"
   },
+  "engines": {
+    "node": "4.1.1",
+    "npm": "2.14.7"
+  },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "grunt db:migrate:up"
   },
   "main": "app.js",
   "repository": {

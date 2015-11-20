@@ -15,30 +15,27 @@ module.exports = {
   session: {
     cookie: {
       secure: true
+    },
+    url: process.env.REDIS_URL
+  },
+
+  connections: {
+    jibePostgreSQL: {
+      url: process.env.DATABASE_URL
     }
-  }
+  },
 
-  /***************************************************************************
-   * Set the default database connection for models in the production        *
-   * environment (see config/connections.js and config/models.js )           *
-   ***************************************************************************/
+  socket: {
+    url: process.env.REDIS_URL
+  },
 
-  // models: {
-  //   connection: 'someMysqlServer'
-  // },
+  models: {
+    migrate: 'safe'
+  },
 
-  /***************************************************************************
-   * Set the port in the production environment to 80                        *
-   ***************************************************************************/
-
-  // port: 80,
-
-  /***************************************************************************
-   * Set the log level in production environment to "silent"                 *
-   ***************************************************************************/
+  port: process.env.PORT,
 
   // log: {
   //   level: "silent"
   // }
-
 };
