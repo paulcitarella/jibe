@@ -5,7 +5,7 @@
  * setting to be enabled in bootstrap.js.
  */
 module.exports = function(req, res, next) {
-  if (!req.secure && (process.env.HEROKU_APP_ID)) {
+  if (!req.secure && (process.env.DYNO)) {
     sails.log.info('enforceSsl: Redirecting to SSL');
     return res.redirect([
       'https://',
