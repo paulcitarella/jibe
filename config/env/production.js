@@ -10,14 +10,24 @@
  *
  */
 
+var _ = require('lodash');
+var redisUrl = require("redis-url").parse(process.env.REDIS_URL);
+var redisHost = redisUrl.host.split(':');
+var redisConfig = {
+  host: redisHost[0],
+  port: redisHost[1],
+  pass: redisUrl.password
+};
+
 module.exports = {
 
-  session: {
+  hookTimeout: 60000,
+
+  session: _.merge({}, redisConfig, {
     cookie: {
       secure: true
-    },
-    url: process.env.REDIS_URL
-  },
+    }
+  }),
 
   connections: {
     jibePostgreSQL: {
@@ -25,9 +35,7 @@ module.exports = {
     }
   },
 
-  socket: {
-    url: process.env.REDIS_URL
-  },
+  sockets: redisConfig,
 
   models: {
     migrate: 'safe'
