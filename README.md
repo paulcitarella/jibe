@@ -13,7 +13,7 @@ A production-grade [Sails.js](http://sailsjs.org) starter application with the f
 * Login via Passport
 * Clusterable sessions with secure cookies
 * Postgres DB
-* Task ownership and scoped queries
+* Model ownership and scoped queries
 * Admin screen and role-based access
 * Background jobs
 * Angular, unit, integration, functional tests
