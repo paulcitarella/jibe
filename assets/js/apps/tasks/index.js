@@ -31,5 +31,8 @@ app.config(['usSpinnerConfigProvider', util.configSpinnerThemes]);
 // Preload angular templates into the cache
 app.run(['$templateCache', require('./templates')]);
 
+// Set up websocket factory
+app.factory('socket', function() { return io.sails.connect(); });
+
 // Controllers
-app.controller('TaskListCtrl', ['$http', 'Flash', 'user', 'data', require('./controllers/taskListCtrl')]);
+app.controller('TaskListCtrl', ['$scope', '$http', 'Flash', 'user', 'data', 'socket', require('./controllers/taskListCtrl')]);
