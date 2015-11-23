@@ -53,6 +53,7 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
+    "test": "mocha test/bootstrap.test.js test/unit/**/*.test.js",
     "postinstall": "grunt db:migrate:up"
   },
   "main": "app.js",
@@ -61,5 +62,9 @@
     "url": "git://github.com/PatentProperties/jibe.git"
   },
   "author": "paulcitarella",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "chai": "~3.4.1",
+    "mocha": "~2.3.4"
+  }
 }
