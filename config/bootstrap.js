@@ -30,43 +30,39 @@ module.exports.bootstrap = function(cb) {
   // Set up the admin role and user if there are no roles in the DB
   Role.count(function(err, count) {
     if (err) return sails.log.error(err);
-    if (count) return;
+    if (count) return cb();
 
-    Promise.bind({}, Role.create({name:'Administrator'})
-      .then(function(role) {
-        this.role = role;
+    Promise.all(_.flatten([
+      Promise.bind({}, Role.create({name:'Administrator'})
+        .then(function(role) {
+          this.role = role;
+          return User.register({
+            firstname: 'Ron',
+            lastname: 'Burgundy',
+            email: 'ron@asdf.com',
+            password: 'asdf1234'
+          });
+
+        }).then(function(user) {
+          user.roles.add(this.role.id);
+          return new Promise(function(resolve, reject) {
+            user.save(function(err, user) {
+              if (err) reject(err);
+              resolve(user);
+            });
+          });
+        })
+      ),
+      _.times(50, function(n) {
         return User.register({
-          firstname: 'Ron',
-          lastname: 'Burgundy',
-          email: 'ron@asdf.com',
+          firstname: 'Test' + (n + 1),
+          lastname: 'User',
+          email: 'user' + (n + 1) + '@asdf.com',
           password: 'asdf1234'
         });
-
-      }).then(function(user) {
-        user.roles.add(this.role.id);
-        user.save(function(err, user) {
-          if (err) return sails.error.log(err);
-          sails.log.info('Admin role and user created');
-        });
-
-      }).catch(function(err) {
-        sails.log.error(err);
       })
-    );
 
-    // Create some dummy users for testing
-    _.times(50, function(n) {
-      User.register({
-        firstname: 'Test' + (n + 1),
-        lastname: 'User',
-        email: 'user' + (n + 1) + '@asdf.com',
-        password: 'asdf1234'
-      });
-    });
+    ])).catch(sails.log.bind(sails.log))
+    .finally(cb);
   });
-
-
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
 };
