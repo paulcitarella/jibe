@@ -7,6 +7,7 @@ before(function(done) {
 
   Sails.lift({
     // configuration for testing purposes
+    environment: 'test'
   }, function(err, server) {
     sails = server;
     if (err) return done(err);
