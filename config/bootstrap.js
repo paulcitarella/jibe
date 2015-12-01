@@ -27,42 +27,48 @@ module.exports.bootstrap = function(cb) {
     handlebars.registerHelper(helperName, helpers[helperName]);
   }
 
-  // Set up the admin role and user if there are no roles in the DB
-  Role.count(function(err, count) {
-    if (err) return sails.log.error(err);
-    if (count) return cb();
+  if (sails.config.environment !== 'test') {
 
-    Promise.all(_.flatten([
-      Promise.bind({}, Role.create({name:'Administrator'})
-        .then(function(role) {
-          this.role = role;
+    // Set up the admin role and user if there are no roles in the DB
+    Role.count(function(err, count) {
+      if (err) return sails.log.error(err);
+      if (count) return cb();
+
+      Promise.all(_.flatten([
+        Promise.bind({}, Role.create({name:'Administrator'})
+          .then(function(role) {
+            this.role = role;
+            return User.register({
+              firstname: 'Ron',
+              lastname: 'Burgundy',
+              email: 'ron@asdf.com',
+              password: 'asdf1234'
+            });
+
+          }).then(function(user) {
+            user.roles.add(this.role.id);
+            return new Promise(function(resolve, reject) {
+              user.save(function(err, user) {
+                if (err) reject(err);
+                resolve(user);
+              });
+            });
+          })
+        ),
+        _.times(50, function(n) {
           return User.register({
-            firstname: 'Ron',
-            lastname: 'Burgundy',
-            email: 'ron@asdf.com',
+            firstname: 'Test' + (n + 1),
+            lastname: 'User',
+            email: 'user' + (n + 1) + '@asdf.com',
             password: 'asdf1234'
           });
-
-        }).then(function(user) {
-          user.roles.add(this.role.id);
-          return new Promise(function(resolve, reject) {
-            user.save(function(err, user) {
-              if (err) reject(err);
-              resolve(user);
-            });
-          });
         })
-      ),
-      _.times(50, function(n) {
-        return User.register({
-          firstname: 'Test' + (n + 1),
-          lastname: 'User',
-          email: 'user' + (n + 1) + '@asdf.com',
-          password: 'asdf1234'
-        });
-      })
 
-    ])).catch(sails.log.bind(sails.log))
-    .finally(cb);
-  });
+      ])).catch(sails.log.bind(sails.log))
+      .finally(cb);
+    });
+
+  } else {
+    cb();
+  }
 };
