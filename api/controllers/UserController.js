@@ -27,7 +27,9 @@ module.exports = {
       return matchingRecords;
 
     }).then(function(matchingRecords) {
-      return User.count().then(function(count) {
+      return User.count()
+        .where(req.options.where)
+        .then(function(count) {
         res.set('X-Total-Count', count);
         res.ok(matchingRecords);
       });

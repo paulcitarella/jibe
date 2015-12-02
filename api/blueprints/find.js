@@ -35,7 +35,9 @@ module.exports = function findRecords (req, res) {
     return matchingRecords;
 
   }).then(function(matchingRecords) {
-    return Model.count().then(function(count) {
+    return Model.count()
+      .where( actionUtil.parseCriteria(req) )
+      .then(function(count) {
       res.set('X-Total-Count', count);
       res.ok(matchingRecords);
     });
