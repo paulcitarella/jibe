@@ -38,9 +38,9 @@
     "lodash": "~3.10.1",
     "rc": "~1.1.0",
     "redis-url": "~1.2.1",
-    "sails": "~0.11.2",
+    "sails": "0.11.3",
     "sails-auth": "~1.3.1",
-    "sails-db-migrate": "~1.1.0",
+    "sails-db-migrate": "~1.3.0",
     "sails-disk": "~0.10.0",
     "sails-hook-autoreload": "~0.12.0",
     "sails-postgresql": "~0.10.16",
@@ -53,12 +53,12 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "postinstall": "grunt db:migrate:up"
+    "postinstall": "grunt heroku"
   },
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/PatentProperties/jibe.git"
+    "url": "git://github.com/paulcitarella/jibe.git"
   },
   "author": "paulcitarella",
   "license": "",

@@ -22,7 +22,7 @@ module.exports.bootstrap = function(cb) {
     dirname: __dirname + '/../api/helpers',
     filter: /(.+)\.js$/
   }) || {};
-  var handlebars = require('sails/node_modules/express-handlebars/node_modules/handlebars');
+  var handlebars = require('handlebars');
   for (var helperName in helpers) {
     handlebars.registerHelper(helperName, helpers[helperName]);
   }
@@ -31,7 +31,7 @@ module.exports.bootstrap = function(cb) {
 
     // Set up the admin role and user if there are no roles in the DB
     Role.count(function(err, count) {
-      if (err) return sails.log.error(err);
+      if (err) return cb();
       if (count) return cb();
 
       Promise.all(_.flatten([
@@ -49,7 +49,7 @@ module.exports.bootstrap = function(cb) {
             user.roles.add(this.role.id);
             return new Promise(function(resolve, reject) {
               user.save(function(err, user) {
-                if (err) reject(err);
+                if (err) return reject(err);
                 resolve(user);
               });
             });
