@@ -26,7 +26,8 @@ A production-grade [Sails.js](http://sailsjs.org) starter application with the f
 * Make sure a Redis server is running on localhost (fresh install with default config)
 * Create a local PostgreSQL database matching the config in `config/connections.js`
 * `npm install`
-* `sails lift`
+* `npm start`
+* Go to [localhost:1337](http://localhost:1337) and login with `ron@asdf.com` password `asdf1234`
 
 ### How Tos
 
