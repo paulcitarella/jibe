@@ -2,7 +2,7 @@
   "name": "jibe",
   "private": true,
   "version": "0.0.0",
-  "description": "a Sails application",
+  "description": "a Sails starter application",
   "keywords": [],
   "dependencies": {
     "angular": "~1.4.7",
@@ -47,8 +47,8 @@
     "socket.io-redis": "~0.1.4"
   },
   "engines": {
-    "node": "4.1.1",
-    "npm": "2.14.7"
+    "node": "8.1.2",
+    "npm": "5.2.0"
   },
   "scripts": {
     "debug": "node debug app.js",
