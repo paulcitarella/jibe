@@ -80,10 +80,7 @@ module.exports.connections = {
   ***************************************************************************/
   jibePostgreSQL: {
     adapter: 'sails-postgresql',
-    host: 'localhost',
-    user: 'jibe',
-    password: 'jibe',
-    database: 'jibe'
+    url: 'postgres://jibe:jibe@localhost:5432/jibe'
   }
 
 
