@@ -52,8 +52,7 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js",
-    "postinstall": "grunt heroku"
+    "start": "node app.js"
   },
   "main": "app.js",
   "repository": {
