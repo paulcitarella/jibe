@@ -52,7 +52,8 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "if [ \"$NODE_ENV\" == \"production\" ]; then grunt heroku; else exit 0; fi"
   },
   "main": "app.js",
   "repository": {
