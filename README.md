@@ -28,7 +28,3 @@ A production-grade [Sails.js](http://sailsjs.org) starter application with the f
 * `npm install`
 * `npm start`
 * Go to [localhost:1337](http://localhost:1337) and login with `ron@asdf.com` password `asdf1234`
-
-### How Tos
-
-* TODO: Adding a new Angular app (requires grunt config updates)
