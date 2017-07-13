@@ -53,6 +53,7 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
+    "test": "grunt mochaTest; grunt nightwatch",
     "heroku-postbuild": "grunt heroku"
   },
   "main": "app.js",
